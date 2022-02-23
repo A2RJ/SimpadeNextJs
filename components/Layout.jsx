@@ -1,25 +1,23 @@
 import Script from "next/script";
 import Head from "next/head";
-import "../styles/globals.css";
-import "/styles/adminlte.min.css";
-import Topbar from "./components/topbar";
-import SideBar from "./components/sidebar";
+import TopBar from "../components/TopBar";
+import SideBar from "../components/SideBar";
 
-
-export default function MyApp({ Component, pageProps }) {
+export default function Layout({ children }) {
   return (
     <>
       <Head>
         <title>AdminLTE 3 | Dashboard</title>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
+        <link rel="stylesheet" href="./../static/adminlte.min.css" />
       </Head>
 
       <div className="wrapper">
-        <Topbar />
+        <TopBar />
         <SideBar />
 
-        <Component {...pageProps} />
+        {children}
         <footer className="main-footer">
           <div className="float-right d-none d-sm-block">
             <b>Version</b> 3.2.0
@@ -40,7 +38,3 @@ export default function MyApp({ Component, pageProps }) {
     </>
   );
 }
-
-
-
-

@@ -29,31 +29,31 @@ const listMenu = [
   {
     hakAkses: ["prasimax"],
     namaMenu: "Pelayanan",
-    route: "/simpade/pelayanan",
+    route: "/simpade/pelayanan/Index",
     type: "singleMenu",
   },
   {
     hakAkses: ["prasimax"],
     namaMenu: "Kantor Pajak",
-    route: "/simpade/kantor-pajak",
+    route: "/simpade/kantor-pajak/Index",
     type: "singleMenu",
   },
   {
     hakAkses: ["prasimax"],
     namaMenu: "Wajib Pajak",
-    route: "/simpade/wajib-pajak",
+    route: "/simpade/wajib-pajak/Index",
     type: "singleMenu",
   },
   {
     hakAkses: ["prasimax"],
     namaMenu: "Alat Fiskal Elektronik",
-    route: "/simpade/AFE",
+    route: "/simpade/AFE/Index",
     type: "singleMenu",
   },
   {
     hakAkses: ["prasimax"],
     namaMenu: "Pelaporan",
-    route: "/simpade/pelaporan",
+    route: "/simpade/pelaporan/Index",
     type: "singleMenu",
   }
 ];

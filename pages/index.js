@@ -1,4 +1,4 @@
-import Dashboard from "./simpade/dashboard/dashboard";
+import Dashboard from './simpade/dashboard/Dashboard';
 
 export default function Home() {
   return (
