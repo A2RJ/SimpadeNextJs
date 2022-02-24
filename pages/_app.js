@@ -35,7 +35,7 @@ export default function MyApp({ Component, pageProps }) {
       <Script src="/static/jquery.min.js"></Script>
       <Script src="/static/bootstrap.bundle.min.js"></Script>
       <Script src="/static/adminlte.min.js"></Script>
-      {/* <Script src="/static/demo.js"></Script> */}
+      <Script src="/static/demo.js"></Script>
     </>
   );
 }

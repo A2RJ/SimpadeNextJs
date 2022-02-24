@@ -1,4 +1,9 @@
+import { useRouter } from "next/router"
+
 export default function index(){
+  const router = useRouter()
+  const { data } = router.query
+  console.log(data, router);
     return (
         <div className="content-wrapper">
       <section className="content-header">

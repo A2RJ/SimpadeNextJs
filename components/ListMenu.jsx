@@ -30,32 +30,51 @@ const listMenu = [
     hakAkses: ["prasimax"],
     namaMenu: "Pelayanan",
     route: "/simpade/pelayanan/Index",
-    type: "singleMenu",
+    subMenu: [
+      {
+        hakAkses: ["prasimax"],
+        namaMenu: "Kantor Pajak",
+        route: "/simpade/kantor-pajak/Input",
+        type: "singleMenu",
+      },
+      {
+        hakAkses: ["prasimax"],
+        namaMenu: "Wajib Pajak",
+        route: "/simpade/wajib-pajak/Input",
+        type: "singleMenu",
+      },
+      {
+        hakAkses: ["prasimax"],
+        namaMenu: "Petugas Lapangan",
+        route: "/simpade/petugas-lapangan/Input",
+        type: "singleMenu",
+      }
+    ],
   },
-  {
-    hakAkses: ["prasimax"],
-    namaMenu: "Kantor Pajak",
-    route: "/simpade/kantor-pajak/Index",
-    type: "singleMenu",
-  },
-  {
-    hakAkses: ["prasimax"],
-    namaMenu: "Wajib Pajak",
-    route: "/simpade/wajib-pajak/Index",
-    type: "singleMenu",
-  },
-  {
-    hakAkses: ["prasimax"],
-    namaMenu: "Alat Fiskal Elektronik",
-    route: "/simpade/AFE/Index",
-    type: "singleMenu",
-  },
-  {
-    hakAkses: ["prasimax"],
-    namaMenu: "Pelaporan",
-    route: "/simpade/pelaporan/Index",
-    type: "singleMenu",
-  }
+  // {
+  //   hakAkses: ["prasimax"],
+  //   namaMenu: "Kantor Pajak",
+  //   route: "/simpade/kantor-pajak/Index",
+  //   type: "singleMenu",
+  // },
+  // {
+  //   hakAkses: ["prasimax"],
+  //   namaMenu: "Wajib Pajak",
+  //   route: "/simpade/wajib-pajak/Index",
+  //   type: "singleMenu",
+  // },
+  // {
+  //   hakAkses: ["prasimax"],
+  //   namaMenu: "Alat Fiskal Elektronik",
+  //   route: "/simpade/AFE/Index",
+  //   type: "singleMenu",
+  // },
+  // {
+  //   hakAkses: ["prasimax"],
+  //   namaMenu: "Pelaporan",
+  //   route: "/simpade/pelaporan/Index?data=pelaporan",
+  //   type: "singleMenu",
+  // },
 ];
 
 export default function ListMenu() {
