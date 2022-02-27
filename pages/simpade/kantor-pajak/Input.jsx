@@ -172,7 +172,7 @@ export default function Input() {
                       />
                       <label
                         className="custom-file-label"
-                        for="exampleInputFile"
+                       htmlFor="exampleInputFile"
                       >
                         Choose file
                       </label>
@@ -195,7 +195,7 @@ export default function Input() {
                       />
                       <label
                         className="custom-file-label"
-                        for="exampleInputFile"
+                       htmlFor="exampleInputFile"
                       >
                         Choose file
                       </label>

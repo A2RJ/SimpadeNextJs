@@ -10,7 +10,6 @@ export default function Layout({ children }) {
         <title>AdminLTE 3 | Dashboard</title>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
-        <link rel="stylesheet" href="./../static/adminlte.min.css" />
       </Head>
 
       <div className="wrapper">

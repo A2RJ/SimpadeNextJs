@@ -1,7 +1,7 @@
 import Script from "next/script";
 import Head from "next/head";
 import "../styles/globals.css";
-import "../styles/adminlte.min.css";
+import "../static/css/adminlte.min.css";
 import TopBar from "../components/TopBar";
 import SideBar from "../components/SideBar";
 
@@ -32,10 +32,10 @@ export default function MyApp({ Component, pageProps }) {
         <aside className="control-sidebar control-sidebar-dark"></aside>
       </div>
 
-      <Script src="/static/jquery.min.js"></Script>
-      <Script src="/static/bootstrap.bundle.min.js"></Script>
-      <Script src="/static/adminlte.min.js"></Script>
-      <Script src="/static/demo.js"></Script>
+      <Script src="/static/js/jquery.min.js"></Script>
+      <Script src="/static/js/bootstrap.bundle.min.js"></Script>
+      <Script src="/static/js/adminlte.min.js"></Script>
+      <Script src="/static/js/demo.js"></Script>
     </>
   );
 }

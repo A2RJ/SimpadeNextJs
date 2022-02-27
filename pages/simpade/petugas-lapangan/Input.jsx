@@ -7,7 +7,7 @@ export default function Input() {
     <div className="content-wrapper">
       <div className="card card-primary p-2">
         <div className="card-header">
-          <h3 className="card-title">Input data Wajib Pajak</h3>
+          <h3 className="card-title">Input data Petugas Lapangan</h3>
         </div>
         <form method="POST" onSubmit={handleSubmit}>
           <div className="card-header">
