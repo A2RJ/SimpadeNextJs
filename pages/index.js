@@ -1,9 +1,30 @@
-import Dashboard from './simpade/dashboard/Dashboard';
+import "../styles/Home.module.css";
 
 export default function Home() {
   return (
     <>
-      <Dashboard />
+      <div className="mb-3">
+        <label htmlFor="exampleFormControlInput1" className="form-label">
+          Email address
+        </label>
+        <input
+          type="email"
+          className="form-control"
+          id="exampleFormControlInput1"
+          placeholder="name@example.com"
+        />
+      </div>
+      <div className="mb-3">
+        <label htmlFor="exampleFormControlTextarea1" className="form-label">
+          Example textarea
+        </label>
+        <textarea
+          className="form-control"
+          id="exampleFormControlTextarea1"
+          rows={3}
+          defaultValue={""}
+        />
+      </div>
     </>
   );
 }
