@@ -1,280 +1,248 @@
+import { TextInput, Button, Grid, Title, Textarea } from "@mantine/core";
+import { DatePicker } from "@mantine/dates";
+import { useForm } from "@mantine/hooks";
+
 export default function Input() {
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log(e);
+  const form = useForm({
+    initialValues: {
+      nomor_pelayanan: "",
+      nama_wajib_pajak: "",
+      kel: "",
+      kec: "",
+      kode_pos: "",
+      npwpd: "",
+      email: "",
+      file_logo: "",
+      file_foto_depan_kantor: "",
+      surat_izin: "",
+      created_at: "",
+      updated_at: "",
+      jumlah_outlet: "",
+      jenis_outlet: "",
+      jenis_pajak: "",
+    },
+
+    validationRules: {
+      nomor_pelayanan: (value) => value !== "",
+      nama_wajib_pajak: (value) => value !== "",
+      kel: (value) => value !== "",
+      kec: (value) => value !== "",
+      kode_pos: (value) => value !== "" && /^\d+$/.test(value),
+      npwpd: (value) => value !== "",
+      email: (value) => value !== "" && /^\S+@\S+$/.test(value),
+      file_logo: (value) => value !== "",
+      file_foto_depan_kantor: (value) => value !== "",
+      surat_izin: (value) => value !== "",
+      created_at: (value) => value !== "",
+      updated_at: (value) => value !== "",
+      jumlah_outlet: (value) => value !== "",
+      jenis_outlet: (value) => value !== "",
+      jenis_pajak: (value) => value !== "",
+    },
+
+    errorMessages: {
+      nomor_pelayanan: "Nomor Pelayanan harus diisi",
+      nama_wajib_pajak: "Nama Wajib Pajak harus diisi",
+      kel: "Kelurahan harus diisi",
+      kec: "Kecamatan harus diisi",
+      kode_pos: "Kode Pos harus diisi dan berupa angka",
+      npwpd: "NPWPD harus diisi",
+      email: "Email harus diisi dan berupa email",
+      file_logo: "File Logo harus diisi",
+      file_foto_depan_kantor: "File Foto Depan Kantor harus diisi",
+      surat_izin: "Surat Izin harus diisi",
+      created_at: "Tanggal Rekam harus diisi",
+      updated_at: "Tanggal Mutakhir harus diisi",
+      jumlah_outlet: "Jumlah Outlet harus diisi",
+      jenis_outlet: "Jenis Outlet harus diisi",
+      jenis_pajak: "Jenis Pajak harus diisi",
+    },
+  });
+
+  const handleSubmit = (values) => {
+    console.log(values);
   };
+
   return (
-    <div className="content-wrapper">
-      <div className="card card-primary p-2">
-        <div className="card-header">
-          <h3 className="card-title">Input data Wajib Pajak</h3>
+    <>
+      <Title
+        order={3}
+        style={{
+          marginTop: "1rem",
+          marginBottom: "1rem",
+        }}
+      >
+        Data Wajib Pajak
+      </Title>
+      <form onSubmit={form.onSubmit((values) => handleSubmit(values))}>
+        <Grid gutter={50}>
+          <Grid.Col md={6} lg={6}>
+            <Grid>
+              <Grid.Col span={12}>
+                <TextInput
+                  required
+                  label="Nomor Pelayanan"
+                  placeholder=""
+                  onBlur={() => form.validateField("nomor_pelayanan")}
+                  {...form.getInputProps("nomor_pelayanan")}
+                />
+              </Grid.Col>
+              <Grid.Col span={12}>
+                <TextInput
+                  required
+                  label="Nama Wajib Pajak"
+                  placeholder=""
+                  onBlur={() => form.validateField("nama_wajib_pajak")}
+                  {...form.getInputProps("nama_wajib_pajak")}
+                />
+              </Grid.Col>
+              <Grid.Col span={12}>
+                <TextInput
+                  required
+                  label="Kelurahan"
+                  placeholder=""
+                  onBlur={() => form.validateField("kel")}
+                  {...form.getInputProps("kel")}
+                />
+              </Grid.Col>
+              <Grid.Col span={12}>
+                <TextInput
+                  required
+                  label="Kecamatan"
+                  placeholder=""
+                  onBlur={() => form.validateField("kec")}
+                  {...form.getInputProps("kec")}
+                />
+              </Grid.Col>
+              <Grid.Col span={12}>
+                <TextInput
+                  required
+                  label="Kode Pos"
+                  placeholder=""
+                  onBlur={() => form.validateField("kode_pos")}
+                  {...form.getInputProps("kode_pos")}
+                />
+              </Grid.Col>
+              <Grid.Col span={12}>
+                <TextInput
+                  required
+                  label="NPWPD"
+                  placeholder=""
+                  onBlur={() => form.validateField("npwpd")}
+                  {...form.getInputProps("npwpd")}
+                />
+              </Grid.Col>
+              <Grid.Col span={12}>
+                <TextInput
+                  required
+                  label="Email"
+                  placeholder=""
+                  onBlur={() => form.validateField("email")}
+                  {...form.getInputProps("email")}
+                />
+              </Grid.Col>
+              <Grid.Col span={12}>
+                <TextInput
+                  required
+                  label="File Logo"
+                  placeholder=""
+                  onBlur={() => form.validateField("file_logo")}
+                  {...form.getInputProps("file_logo")}
+                />
+              </Grid.Col>
+              <Grid.Col span={12}>
+                <TextInput
+                  required
+                  label="File Foto Depan Kantor"
+                  placeholder=""
+                  onBlur={() => form.validateField("file_foto_depan_kantor")}
+                  {...form.getInputProps("file_foto_depan_kantor")}
+                />
+              </Grid.Col>
+              <Grid.Col span={12}>
+                <TextInput
+                  required
+                  label="Surat Izin"
+                  placeholder=""
+                  onBlur={() => form.validateField("surat_izin")}
+                  {...form.getInputProps("surat_izin")}
+                />
+              </Grid.Col>
+            </Grid>
+          </Grid.Col>
+          <Grid.Col md={6} lg={6}>
+            <Grid>
+              <Grid.Col span={12}>
+                <DatePicker
+                  placeholder="Pick date"
+                  label="Tanggal Rekam"
+                  required
+                  onBlur={() => form.validateField("created_at")}
+                  {...form.getInputProps("created_at")}
+                />
+              </Grid.Col>
+              <Grid.Col span={12}>
+                <DatePicker
+                  placeholder="Pick date"
+                  label="Tanggal Mutakhir"
+                  required
+                  onBlur={() => form.validateField("updated_at")}
+                  {...form.getInputProps("updated_at")}
+                />
+              </Grid.Col>
+              <Grid.Col span={12}>
+                <Title
+                  order={3}
+                  style={{
+                    marginTop: "1rem",
+                    marginBottom: "1rem",
+                  }}
+                >
+                  Informasi Outlet
+                </Title>
+              </Grid.Col>
+              <Grid.Col span={12}>
+                <TextInput
+                  required
+                  label="Jumlah Outlet"
+                  placeholder=""
+                  onBlur={() => form.validateField("jumlah_outlet")}
+                  {...form.getInputProps("jumlah_outlet")}
+                />
+              </Grid.Col>
+              <Grid.Col span={12}>
+                <TextInput
+                  required
+                  label="Jenis Outlet"
+                  placeholder=""
+                  onBlur={() => form.validateField("jenis_outlet")}
+                  {...form.getInputProps("jenis_outlet")}
+                />
+              </Grid.Col>
+              <Grid.Col span={12}>
+                <TextInput
+                  required
+                  label="Jenis Pajak"
+                  placeholder=""
+                  onBlur={() => form.validateField("jenis_pajak")}
+                  {...form.getInputProps("jenis_pajak")}
+                />
+              </Grid.Col>
+            </Grid>
+          </Grid.Col>
+        </Grid>
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "flex-start",
+            marginTop: "1rem",
+          }}
+        >
+          <Button type="submit" color="primary" variant="outline">
+            Submit
+          </Button>
         </div>
-        <form method="POST" onSubmit={handleSubmit}>
-          <div className="card-header">
-            <h3 className="card-title">Data Wajib Pajak</h3>
-          </div>
-          <div className="card-body">
-            <div className="row">
-              <div className="col-sm-6">
-                <div className="row">
-                  {/* nomor pelayanan */}
-                  <div className="col-sm-12">
-                    <div className="form-group">
-                      <label htmlFor="nomor_pelayanan">Nomor Pelayanan</label>
-                      <input
-                        type="text"
-                        className="form-control"
-                        id="nomor_pelayanan"
-                        name="nomor_pelayanan"
-                        placeholder=""
-                      />
-                    </div>
-                  </div>
-                  {/* nama wajib pajak */}
-                  <div className="col-sm-12">
-                    <div className="form-group">
-                      <label htmlFor="nama_wp">Nama Wajib Pajak</label>
-                      <input
-                        type="text"
-                        className="form-control"
-                        id="nama_wp"
-                        name="nama_wp"
-                        placeholder=""
-                      />
-                    </div>
-                  </div>
-                  {/* alamat wajib pajak */}
-                  <div className="col-sm-12">
-                    <div className="form-group">
-                      <label htmlFor="alamat_wp">Alamat Wajib Pajak</label>
-                      <input
-                        type="text"
-                        className="form-control"
-                        id="alamat_wp"
-                        name="alamat_wp"
-                        placeholder=""
-                      />
-                    </div>
-                  </div>
-                  {/* kelurahan */}
-                  <div className="col-sm-12">
-                    <div className="form-group">
-                      <label htmlFor="kelurahan">Kelurahan</label>
-                      <input
-                        type="text"
-                        className="form-control"
-                        id="kelurahan"
-                        name="kelurahan"
-                        placeholder=""
-                      />
-                    </div>
-                  </div>
-                  {/* kecamatan */}
-                  <div className="col-sm-12">
-                    <div className="form-group">
-                      <label htmlFor="kecamatan">Kecamatan</label>
-                      <input
-                        type="text"
-                        className="form-control"
-                        id="kecamatan"
-                        name="kecamatan"
-                        placeholder=""
-                      />
-                    </div>
-                  </div>
-                  {/* kode pos */}
-                  <div className="col-sm-12">
-                    <div className="form-group">
-                      <label htmlFor="kode_pos">Kode Pos</label>
-                      <input
-                        type="text"
-                        className="form-control"
-                        id="kode_pos"
-                        name="kode_pos"
-                        placeholder=""
-                      />
-                    </div>
-                  </div>
-                  {/* NPWPD */}
-                  <div className="col-sm-12">
-                    <div className="form-group">
-                      <label htmlFor="npwpd">NPWPD</label>
-                      <input
-                        type="text"
-                        className="form-control"
-                        id="npwpd"
-                        name="npwpd"
-                        placeholder=""
-                      />
-                    </div>
-                  </div>
-                  {/* email */}
-                  <div className="col-sm-12">
-                    <div className="form-group">
-                      <label htmlFor="email">Email</label>
-                      <input
-                        type="text"
-                        className="form-control"
-                        id="email"
-                        name="email"
-                        placeholder=""
-                      />
-                    </div>
-                  </div>
-                  {/* logo file */}
-                  <div className="col-sm-12">
-                    <div className="form-group">
-                      <label htmlFor="logo">Logo File</label>
-                      <div className="input-group">
-                        <div className="custom-file">
-                          <input
-                            type="file"
-                            className="custom-file-input"
-                            id="logo"
-                            name="logo"
-                          />
-                          <label
-                            className="custom-file-label"
-                            htmlFor="logo"
-                          >
-                            Choose file
-                          </label>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  {/* foto depan file */}
-                  <div className="col-sm-12">
-                    <div className="form-group">
-                      <label htmlFor="foto_depan">Foto Depan</label>
-                      <div className="input-group">
-                        <div className="custom-file">
-                          <input
-                            type="file"
-                            className="custom-file-input"
-                            id="foto_depan"
-                            name="foto_depan"
-                          />
-                          <label
-                            className="custom-file-label"
-                            htmlFor="foto_depan"
-                          >
-                            Choose file
-                          </label>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  {/* surat izin file */}
-                  <div className="col-sm-12">
-                    <div className="form-group">
-                      <label htmlFor="surat_izin">Surat Izin</label>
-                      <div className="input-group">
-                        <div className="custom-file">
-                          <input
-                            type="file"
-                            className="custom-file-input"
-                            id="surat_izin"
-                            name="surat_izin"
-                          />
-                          <label
-                            className="custom-file-label"
-                            htmlFor="surat_izin"
-                          >
-                            Choose file
-                          </label>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div className="col-sm-6">
-                <div className="row">
-                  {/* tanggal rekam */}
-                  <div className="col-sm-12">
-                    <div className="form-group">
-                      <label htmlFor="tgl_rekam">Tanggal Rekam</label>
-                      <input
-                        type="text"
-                        className="form-control"
-                        id="tgl_rekam"
-                        name="tgl_rekam"
-                        placeholder=""
-                      />
-                    </div>
-                  </div>
-                  {/* tanggal mutakhir */}
-                  <div className="col-sm-12">
-                    <div className="form-group">
-                      <label htmlFor="tgl_mutakhir">Tanggal Mutakhir</label>
-                      <input
-                        type="text"
-                        className="form-control"
-                        id="tgl_mutakhir"
-                        name="tgl_mutakhir"
-                        placeholder=""
-                      />
-                    </div>
-                  </div>
-                  {/* Informasi outlet */}
-                  <div className="col-sm-12 card-header">
-                    <h3 className="card-title">Informasi Outlet</h3>
-                  </div>
-                  {/* jumlah outlet */}
-                  <div className="col-sm-12">
-                    <div className="form-group">
-                      <label htmlFor="jumlah_outlet">Jumlah Outlet</label>
-                      <input
-                        type="text"
-                        className="form-control"
-                        id="jumlah_outlet"
-                        name="jumlah_outlet"
-                        placeholder=""
-                      />
-                    </div>
-                  </div>
-                  {/* Jenis outlet */}
-                  <div className="col-sm-12">
-                    <div className="form-group">
-                      <label htmlFor="jenis_outlet">Jenis Outlet</label>
-                      <select
-                        className="form-control"
-                        id="jenis_outlet"
-                        name="jenis_outlet"
-                      >
-                        <option value="">Pilih Jenis Outlet</option>
-                        <option value="1">Outlet Perusahaan</option>
-                        <option value="2">Outlet Perorangan</option>
-                      </select>
-                    </div>
-                  </div>
-                  {/* Jenis pajak */}
-                  <div className="col-sm-12">
-                    <div className="form-group">
-                      <label htmlFor="jenis_pajak">Jenis Pajak</label>
-                      <select
-                        className="form-control"
-                        id="jenis_pajak"
-                        name="jenis_pajak"
-                      >
-                        <option value="">Pilih Jenis Pajak</option>
-                        <option value="1">Pajak Penghasilan</option>
-                        <option value="2">Pajak Penghasilan dan PPh</option>
-                      </select>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className="card-footer">
-            <button type="submit" className="btn btn-primary float-right">
-              Submit
-            </button>
-          </div>
-        </form>
-      </div>
-    </div>
+      </form>
+    </>
   );
 }

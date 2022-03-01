@@ -5,49 +5,31 @@ export default function ListMenu() {
     {
       name: "Dashboard",
       type: "single",
+      link: "/",
     },
     {
-      name: "Widgets",
+      name: "Pelayanan",
       type: "parent",
-      slug: "#widget",
+      slug: "#pelayanan",
       children: [
         {
-          name: "Widget 1",
-          link: "/dashboard/dashboard-1",
+          name: "Kantor Pajak",
+          link: "/simpade/kantor-pajak/Input",
         },
         {
-          name: "Widget 2",
-          link: "/dashboard/dashboard-2",
+          name: "Wajib Pajak",
+          link: "/simpade/wajib-pajak/Input",
         },
+        {
+          name: "Petugas Lapangan",
+          link: "/simpade/petugas-lapangan/Input",
+        },
+        {
+          name: "Persetujuan",
+          link: "/simpade/persetujuan",
+        }
       ],
-    },
-    {
-      name: "Charts",
-      type: "parent",
-      slug: "#chart",
-      children: [
-        {
-          name: "Chart 1",
-          link: "/",
-        },
-        {
-          name: "Chart 2",
-          link: "/",
-        },
-      ],
-    },
-    {
-      name: "User",
-      type: "single",
-    },
-    {
-      name: "Wajib Pajak",
-      type: "single",
-    },
-    {
-      name: "Pajak",
-      type: "single",
-    },
+    }
   ];
 
   return (
@@ -63,10 +45,10 @@ export default function ListMenu() {
   );
 }
 
-function SingleMenu({ name }) {
+function SingleMenu({ name, link }) {
   return (
     <li className="nav-item">
-      <Link href="/">
+      <Link href={link}>
         <a
           className={"nav-link" + (name === "Dashboard" ? " active" : "")}
           aria-current="page"
@@ -152,17 +134,17 @@ function ParentMenu({ name, slug, children }) {
         data-bs-parent="#sidebar-menu"
       >
         {children.map((child, index) => {
-          return <ChildMenu key={index} name={child.name} />;
+          return <ChildMenu key={index} {...child} />;
         })}
       </ul>
     </li>
   );
 }
 
-function ChildMenu({ name }) {
+function ChildMenu({ name, link }) {
   return (
     <li className="nav-item">
-      <Link href="/">
+      <Link href={link}>
         <a className="nav-link">
           <i className="icon">
             <svg
