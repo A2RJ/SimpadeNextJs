@@ -1,8 +1,38 @@
-import { Grid } from "@mantine/core";
+import { Grid, Select } from "@mantine/core";
+import { useEffect, useState } from "react";
+import {
+  provinsi,
+  provinsiById,
+} from "../../../components/indonesia/indonesia";
 
 export default function Dashboard() {
+  const [prov, setprov] = useState([]);
+  useEffect(() => {
+    provinsi().then((data) =>
+      setprov(
+        data.map((item) => {
+          return {
+            ...item,
+            value: item.prov_id,
+            label: item.prov_name,
+          };
+        })
+      )
+    );
+  }, []);
+
+  const getProvinsi = (e) => {
+    provinsiById(e).then((data) => console.log(data[0]));
+  };
+
   return (
     <>
+      <Select
+        label="Your favorite framework/library"
+        placeholder="Pick one"
+        data={prov}
+        onChange={(e) => getProvinsi(e)}
+      />
       <Grid grow>
         <Grid.Col span={4}>
           <h1
