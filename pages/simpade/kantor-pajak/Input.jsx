@@ -1,8 +1,39 @@
-import { TextInput, Button, Grid, Title, Textarea } from "@mantine/core";
+import {
+  TextInput,
+  Button,
+  Grid,
+  Title,
+  Textarea,
+  Select,
+} from "@mantine/core";
 import { DatePicker } from "@mantine/dates";
 import { useForm } from "@mantine/hooks";
+import { useState } from "react";
+import { kodePos, kotaKab } from "../../../components/indonesia/indonesia";
 
-export default function Input() {
+export async function getServerSideProps() {
+  const data = await kotaKab()
+    .then((res) => res.json())
+    .then((data) =>
+      data.map((item) => {
+        return {
+          ...item,
+          value: item.city_id,
+          label: item.city_name,
+        };
+      })
+    );
+
+  return {
+    props: {
+      data: data || [],
+    },
+  };
+}
+
+export default function Input({ data }) {
+  const [postal_code, setPostalCode] = useState("");
+
   const form = useForm({
     initialValues: {
       nama_pemda: "",
@@ -21,17 +52,17 @@ export default function Input() {
     },
 
     validationRules: {
-      nama_pemda: (value) => value.trim().length > 0,
-      kode_pemda: (value) => value.trim().length > 0,
-      nomenklatur: (value) => value.trim().length > 0,
-      alamat: (value) => value.trim().length > 0,
-      kotakab: (value) => value.trim().length > 0,
-      kodepos: (value) => value.trim().length > 0 && /^\d+$/.test(value),
-      nama_kepinstansi: (value) => value.trim().length > 0,
-      tlp: (value) => value.trim().length > 0 && /^\d+$/.test(value),
-      email: (value) => value.trim().length > 0 && /^\S+@\S+$/.test(value),
-      file_logo: (value) => value.trim().length > 0,
-      file_kantor: (value) => value.trim().length > 0,
+      nama_pemda: (value) => value !== "",
+      kode_pemda: (value) => value !== "",
+      nomenklatur: (value) => value !== "",
+      alamat: (value) => value !== "",
+      kotakab: (value) => value !== "",
+      kodepos: (value) => value !== "" && /^\d+$/.test(value),
+      nama_kepinstansi: (value) => value !== "",
+      tlp: (value) => value !== "" && /^\d+$/.test(value),
+      email: (value) => value !== "" && /^\S+@\S+$/.test(value),
+      file_logo: (value) => value !== "",
+      file_kantor: (value) => value !== "",
       created_at: (value) => value !== "",
       updated_at: (value) => value !== "",
     },
@@ -52,6 +83,21 @@ export default function Input() {
       updated_at: "Updated At harus diisi",
     },
   });
+
+  const getProvinsi = async (e) => {
+    console.log(e);
+    const kode = await kodePos()
+      .then((data) => data.json())
+      .then((data) =>
+        data.filter(
+          (item) =>
+            item.city_id === e &&
+            item.dis_id === 4153 &&
+            item.subdis_id === 51159
+        )
+      );
+    form.setFieldValue("kodepos", kode[0] ? kode[0]["postal_code"] : "");
+  };
 
   const handleSubmit = (values) => {
     console.log(values);
@@ -100,21 +146,26 @@ export default function Input() {
                 />
               </Grid.Col>
               <Grid.Col span={12}>
-                <TextInput
-                  required
-                  label="Alamat"
+                <Textarea
                   placeholder=""
+                  label="Alamat"
+                  autosize
+                  minRows={2}
+                  maxRows={6}
                   onBlur={() => form.validateField("alamat")}
                   {...form.getInputProps("alamat")}
                 />
               </Grid.Col>
               <Grid.Col span={12}>
-                <TextInput
-                  required
+                <Select
                   label="Kota/Kabupaten"
-                  placeholder=""
-                  onBlur={() => form.validateField("kotakab")}
-                  {...form.getInputProps("kotakab")}
+                  placeholder="Pick one"
+                  transition="pop-top-left"
+                  transitionDuration={80}
+                  transitionTimingFunction="ease"
+                  searchable
+                  data={data}
+                  onChange={(e) => getProvinsi(e)}
                 />
               </Grid.Col>
               <Grid.Col span={12}>
