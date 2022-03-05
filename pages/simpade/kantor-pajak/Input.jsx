@@ -5,11 +5,17 @@ import {
   Title,
   Textarea,
   Select,
+  Modal,
 } from "@mantine/core";
 import { DatePicker } from "@mantine/dates";
 import { useForm } from "@mantine/hooks";
-import { useState } from "react";
-import { kodePos, kotaKab } from "../../../components/indonesia/indonesia";
+import { useRef, useState } from "react";
+import {
+  kodePos,
+  kotaKab,
+  kecamatan,
+  desaKel,
+} from "../../../components/indonesia/indonesia";
 
 export async function getServerSideProps() {
   const data = await kotaKab()
@@ -32,7 +38,12 @@ export async function getServerSideProps() {
 }
 
 export default function Input({ data }) {
-  const [postal_code, setPostalCode] = useState("");
+  const [opened, setOpened] = useState(false);
+  const refProv = useRef();
+  const refKecamatan = useRef();
+  const refDesaKel = useRef();
+  const [selectedKecamatan, setKecamatan] = useState([]);
+  const [selectedKelurahan, setKelurahan] = useState([]);
 
   const form = useForm({
     initialValues: {
@@ -41,6 +52,8 @@ export default function Input({ data }) {
       nomenklatur: "",
       alamat: "",
       kotakab: "",
+      kecamatan: "",
+      kelurahan: "",
       kodepos: "",
       nama_kepinstansi: "",
       tlp: "",
@@ -57,6 +70,8 @@ export default function Input({ data }) {
       nomenklatur: (value) => value !== "",
       alamat: (value) => value !== "",
       kotakab: (value) => value !== "",
+      kecamatan: (value) => value !== "",
+      kelurahan: (value) => value !== "",
       kodepos: (value) => value !== "" && /^\d+$/.test(value),
       nama_kepinstansi: (value) => value !== "",
       tlp: (value) => value !== "" && /^\d+$/.test(value),
@@ -73,6 +88,8 @@ export default function Input({ data }) {
       nomenklatur: "Nomenklatur harus diisi",
       alamat: "Alamat harus diisi",
       kotakab: "Kota/Kabupaten harus diisi",
+      kecamatan: "Kecamatan harus diisi",
+      kelurahan: "Kelurahan harus diisi",
       kodepos: "Kode Pos harus diisi dan berupa angka",
       nama_kepinstansi: "Nama Kepala Instansi harus diisi",
       tlp: "Telepon harus diisi dan berupa angka",
@@ -84,23 +101,65 @@ export default function Input({ data }) {
     },
   });
 
-  const getProvinsi = async (e) => {
-    console.log(e);
-    const kode = await kodePos()
+  const getKecamatan = async (e) => {
+    const kec = await kecamatan()
       .then((data) => data.json())
+      .then((data) => data.filter((item) => item.city_id === e))
       .then((data) =>
-        data.filter(
-          (item) =>
-            item.city_id === e &&
-            item.dis_id === 4153 &&
-            item.subdis_id === 51159
-        )
+        data.map((item) => {
+          return {
+            ...item,
+            value: item.dis_id,
+            label: item.dis_name,
+          };
+        })
       );
-    form.setFieldValue("kodepos", kode[0] ? kode[0]["postal_code"] : "");
+    setKecamatan(kec);
+    if (!e) {
+      refKecamatan.current.focus();
+      setKelurahan([]);
+      refDesaKel.current.focus();
+      refProv.current.focus();
+    }
+    form.setFieldValue("kodepos", "");
+  };
+
+  const getKelurahan = async (e) => {
+    const kel = await desaKel()
+      .then((data) => data.json())
+      .then((data) => data.filter((item) => item.dis_id === e))
+      .then((data) =>
+        data.map((item) => {
+          return {
+            ...item,
+            value: item.subdis_id,
+            label: item.subdis_name,
+          };
+        })
+      );
+    setKelurahan(kel);
+    form.setFieldValue("kodepos", "");
+  };
+
+  const getKodePos = async (e) => {
+    const kel = await kodePos()
+      .then((data) => data.json())
+      .then((data) => data.filter((item) => item.subdis_id === e));
+    form.setFieldValue("kodepos", kel.length > 0 ? kel[0].postal_code : "");
   };
 
   const handleSubmit = (values) => {
+    setOpened(true)
     console.log(values);
+    return (
+      <Modal
+        opened={opened}
+        onClose={() => setOpened(false)}
+        title="Introduce yourself!"
+      >
+        {JSON.stringify(values)}
+      </Modal>
+    );
   };
 
   return (
@@ -159,13 +218,46 @@ export default function Input({ data }) {
               <Grid.Col span={12}>
                 <Select
                   label="Kota/Kabupaten"
-                  placeholder="Pick one"
+                  placeholder="Pilih"
+                  dropdownPosition="bottom"
                   transition="pop-top-left"
                   transitionDuration={80}
                   transitionTimingFunction="ease"
                   searchable
+                  clearable
                   data={data}
-                  onChange={(e) => getProvinsi(e)}
+                  ref={refProv}
+                  onChange={(e) => getKecamatan(e)}
+                />
+              </Grid.Col>
+              <Grid.Col span={12}>
+                <Select
+                  label="Kecamatan"
+                  placeholder="Pilih"
+                  dropdownPosition="bottom"
+                  transition="pop-top-left"
+                  transitionDuration={80}
+                  transitionTimingFunction="ease"
+                  searchable
+                  clearable
+                  data={selectedKecamatan}
+                  ref={refKecamatan}
+                  onChange={(e) => getKelurahan(e)}
+                />
+              </Grid.Col>
+              <Grid.Col span={12}>
+                <Select
+                  label="Kelurahan"
+                  placeholder="Pilih"
+                  dropdownPosition="bottom"
+                  transition="pop-top-left"
+                  transitionDuration={80}
+                  transitionTimingFunction="ease"
+                  searchable
+                  clearable
+                  data={selectedKelurahan}
+                  ref={refDesaKel}
+                  onChange={(e) => getKodePos(e)}
                 />
               </Grid.Col>
               <Grid.Col span={12}>

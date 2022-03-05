@@ -7,7 +7,7 @@ export default function MyApp({ Component, pageProps }) {
   return (
     <>
     <Head>
-      <title>Mantine</title>
+      <title>SIMPADE</title>
       <link rel="icon" href="/favicon.ico" />
     </Head>
       <MantineProvider

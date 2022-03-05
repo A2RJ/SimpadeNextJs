@@ -18,13 +18,19 @@ export default function Layout({ children }) {
         className="main-content"
         style={{
           backgroundColor: "#dedede",
+          minHeight: "100vh",
         }}
       >
         <div className="position-relative iq-banner">
           <TopBar />
-          <Card shadow="sm" padding="lg" className="m-1 mt-3" style={{
-            minHeight: 'calc(100vh - 80px)',
-          }}>
+          <Card
+            shadow="sm"
+            padding="lg"
+            className="m-1 mt-3"
+            style={{
+              minHeight: "calc(100vh - 80px)",
+            }}
+          >
             <Container>{children}</Container>
           </Card>
         </div>

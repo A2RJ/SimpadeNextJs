@@ -28,12 +28,14 @@ export default function Dashboard() {
   return (
     <>
       <Select
-        label="Your favorite framework/library"
+        label="Pilih Kabupaten"
         placeholder="Pick one"
         data={prov}
+        clearable
+        searchable
         onChange={(e) => getProvinsi(e)}
       />
-      <Grid grow>
+      {/* <Grid grow>
         <Grid.Col span={4}>
           <h1
             style={{
@@ -109,7 +111,7 @@ export default function Dashboard() {
             Dashboard
           </h1>
         </Grid.Col>
-      </Grid>
+      </Grid> */}
     </>
   );
 }
