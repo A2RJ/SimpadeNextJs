@@ -26,7 +26,7 @@ export default function ListMenu() {
         },
         {
           name: "Persetujuan",
-          link: "/simpade/persetujuan",
+          link: "/simpade/persetujuan/Persetujuan",
         }
       ],
     }

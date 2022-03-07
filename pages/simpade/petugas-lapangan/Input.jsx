@@ -2,6 +2,18 @@ import { TextInput, Button, Grid, Title, Textarea } from "@mantine/core";
 import { DatePicker } from "@mantine/dates";
 import { useForm } from "@mantine/hooks";
 
+export async function getServerSideProps(){
+  const data = await fetch("https://jsonplaceholder.typicode.com/todos/1")
+    .then((response) => response.json())
+    .then((json) => json);
+    console.log(data);
+  return {
+    props: {
+      data: data || [],
+    },
+  };
+}
+
 export default function Input() {
   const form = useForm({
     initialValues: {
