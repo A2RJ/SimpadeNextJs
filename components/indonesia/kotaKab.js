@@ -1,5 +1,5 @@
 const kotaKab = async () => {
-  return fetch("http://localhost:3000/indonesia/kotakab.json");
+  return fetch(`${ROOT_URL}/indonesia/kotakab.json`);
 };
 
 export { kotaKab };

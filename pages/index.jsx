@@ -1,5 +1,5 @@
 import "../styles/Home.module.css";
-import Dashboard from "./simpade/dashboard/Dashboard";
+import Dashboard from "./simpade/dashboard/dashboard";
 
 export async function getServerSideProps() {
   const data = await fetch("https://jsonplaceholder.typicode.com/todos/1")

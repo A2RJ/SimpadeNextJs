@@ -1,8 +1,10 @@
+import { ROOT_URL } from "../../lib/config";
+
 const allKodePos = async () => {
-  return fetch("http://localhost:3000/indonesia/kodepos.json");
+  return fetch(`${ROOT_URL}/indonesia/kodepos.json`);
 };
 const kodePos = async () => {
-  return fetch("http://localhost:3000/indonesia/kodepos.json");
+  return fetch(`${ROOT_URL}/indonesia/kodepos.json`);
 };
 
 

@@ -1,5 +1,7 @@
+import { ROOT_URL } from "../../lib/config";
+
 const desaKel = async () => {
-    return fetch("http://localhost:3000/indonesia/desa.json");
+    return fetch(`${ROOT_URL}/indonesia/desa.json`);
   };
   
   export { desaKel };

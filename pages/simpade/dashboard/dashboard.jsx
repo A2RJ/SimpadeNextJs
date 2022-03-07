@@ -1,3 +1,3 @@
 export default function Dashboard({ data }) {
-  return <>{data.title}</>;
+  return <>{data ? <h1>{data.title}</h1> : ""}</>;
 }
