@@ -1,7 +1,5 @@
-import { ROOT_URL } from "../../lib/config";
-
 const desaKel = async () => {
-    return fetch(`${ROOT_URL}/indonesia/desa.json`);
+    return fetch("https://simpade-a2rj.vercel.app/indonesia/desa.json");
   };
   
   export { desaKel };

@@ -1,7 +1,5 @@
-import { ROOT_URL } from "../../lib/config";
-
 const kecamatan = async () => {
-    return fetch(`${ROOT_URL}/indonesia/kecamatan.json`);
+    return fetch("https://simpade-a2rj.vercel.app/indonesia/kecamatan.json");
   };
   
   export { kecamatan };
