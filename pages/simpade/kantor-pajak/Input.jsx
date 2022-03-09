@@ -15,7 +15,7 @@ import {
   kotaKab,
   kecamatan,
   desaKel,
-} from "../../../components/indonesia/indonesia";
+} from "../../../lib/indonesia/indonesia";
 
 export async function getServerSideProps() {
   const data = await kotaKab()

@@ -19,13 +19,19 @@
 - Temukan learning style (Visual, Auditory, Kinestetik)
 
 # Progress
-- Form 
--- Kantor Pajak
--- Wajib Pajak
--- Petugas Lapangan
+
+- Form
+  -- Kantor Pajak
+  -- Wajib Pajak
+  -- Petugas Lapangan
 - Auth
   -- Login
   -- Logout
 - Middleware
   -- Verifikasi Token (Jika token tidak valid, maka redirect ke login)
   -- Verifikasi Role (Jika role tidak sesuai, maka redirect ke login atau dashboard)
+
+# Perlu testing
+
+- Bagaimana jika expired token diubah dan lakukan set manual ke cookie
+  -- antisipasi simpan data user login dan setiap user request
