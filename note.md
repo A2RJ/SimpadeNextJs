@@ -33,5 +33,6 @@
 
 # Perlu testing
 
-- Bagaimana jika expired token diubah dan lakukan set manual ke cookie
-  -- antisipasi simpan data user login dan setiap user request
+- Bagaimana jika token expired lalu diubah (ex: merubah expired) dan lakukan request atau set manual ke cookie?
+- antisipasi simpan data user login 
+- middelware api mengecek token dan setiap user request maka akan disimpan (ex: userId, route, role, dateTime)
