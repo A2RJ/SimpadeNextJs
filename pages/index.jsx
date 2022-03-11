@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { useRouter } from "next/router";
 import "../styles/Home.module.css";
 import { Button, Text } from "@mantine/core";
-import useAuth from "../lib/useAuth";
+import Auth from "../lib/Auth";
 import Dashboard from "./simpade/dashboard/dashboard";
 import Cookies from "js-cookie";
 
@@ -18,7 +18,7 @@ export async function getServerSideProps() {
 }
 export default function Home({ data }) {
   const router = useRouter();
-  const { login } = useAuth();
+  const { login } = Auth();
 
   const submit = async () => {
     const data = await login({
@@ -26,7 +26,7 @@ export default function Home({ data }) {
       password: "11111111",
     });
 
-    console.log(useAuth().isAuthenticated, Cookies.get('user'));
+    console.log(Auth().isAuthenticated, Cookies.get("user"));
   };
 
   return (
@@ -36,7 +36,9 @@ export default function Home({ data }) {
       <Button type="primary" onClick={submit}>
         Primary
       </Button>
-      <Text>{useAuth().isAuthenticated ? useAuth().user.nama_wp : 'Belum login'}</Text>
+      <Text>
+        {Auth().isAuthenticated ? Auth().user.nama_wp : "Belum login"}
+      </Text>
     </>
   );
 }
