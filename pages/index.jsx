@@ -4,6 +4,7 @@ import "../styles/Home.module.css";
 import { Button, Text } from "@mantine/core";
 import useAuth from "../lib/useAuth";
 import Dashboard from "./simpade/dashboard/dashboard";
+import Cookies from "js-cookie";
 
 export async function getServerSideProps() {
   const data = await fetch("https://jsonplaceholder.typicode.com/todos/1")
@@ -17,11 +18,7 @@ export async function getServerSideProps() {
 }
 export default function Home({ data }) {
   const router = useRouter();
-  const { login, isAuthenticated } = useAuth();
-
-  useEffect(() => {
-    if (isAuthenticated) router.push("/dashboard");
-  }, []);
+  const { login } = useAuth();
 
   const submit = async () => {
     const data = await login({
@@ -29,7 +26,7 @@ export default function Home({ data }) {
       password: "11111111",
     });
 
-    console.log(data);
+    console.log(useAuth().isAuthenticated, Cookies.get('user'));
   };
 
   return (
@@ -39,7 +36,7 @@ export default function Home({ data }) {
       <Button type="primary" onClick={submit}>
         Primary
       </Button>
-      <Text>{isAuthenticated}</Text>
+      <Text>{useAuth().isAuthenticated ? useAuth().user.nama_wp : 'Belum login'}</Text>
     </>
   );
 }
