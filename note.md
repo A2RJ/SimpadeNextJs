@@ -2,6 +2,17 @@
 
 - Tidak bisa panggil getServerSideProps() di child component
 
+# GIT
+
+- git status
+- git checkout -b <branch>
+- git add .
+- git commit -m "message"
+- git push origin <branch>
+- git checkout main
+- git merge --no-ff <branch> / git merge <branch>
+- git push origin main
+
 # Goals SMARTER
 
 - spesific (Fokus)
@@ -34,5 +45,5 @@
 # Perlu testing
 
 - Bagaimana jika token expired lalu diubah (ex: merubah expired) dan lakukan request atau set manual ke cookie?
-- antisipasi simpan data user login 
+- antisipasi simpan data user login
 - middelware api mengecek token dan setiap user request maka akan disimpan (ex: userId, route, role, dateTime)

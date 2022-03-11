@@ -1,8 +1,8 @@
 import Link from "next/link";
-import useAuth from "../../lib/useAuth";
+import Auth from "../../lib/Auth";
 
 export default function ListMenu() {
-  const { user } = useAuth();
+  const { user } = Auth();
   const menu = [
     {
       name: "Dashboard",
