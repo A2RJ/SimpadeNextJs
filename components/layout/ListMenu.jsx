@@ -1,15 +1,19 @@
 import Link from "next/link";
+import useAuth from "../../lib/useAuth";
 
 export default function ListMenu() {
+  const { user } = useAuth();
   const menu = [
     {
       name: "Dashboard",
       type: "single",
       link: "/",
+      visibility: ["admin", "user"],
     },
     {
       name: "Pelayanan",
       type: "parent",
+      visibility: ["admin", "user"],
       slug: "#pelayanan",
       children: [
         {
@@ -27,10 +31,16 @@ export default function ListMenu() {
         {
           name: "Persetujuan",
           link: "/simpade/persetujuan/Persetujuan",
-        }
+        },
       ],
-    }
+    },
   ];
+
+  // menu = menu.filter((item) => {
+  //   if (item.visibility.includes(user.role)) {
+  //     return item;
+  //   }
+  // });
 
   return (
     <>
