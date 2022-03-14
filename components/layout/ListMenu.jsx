@@ -1,8 +1,6 @@
 import Link from "next/link";
-import Auth from "../../lib/Auth";
 
 export default function ListMenu() {
-  const { user } = Auth();
   const menu = [
     {
       name: "Dashboard",

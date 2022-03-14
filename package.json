@@ -1,45 +1,33 @@
 {
-  "name": "simpade",
+  "name": "nuxtjssimpade",
   "version": "0.1.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint",
-    "export": "next build && next export"
+    "lint": "next lint"
   },
   "dependencies": {
-    "@mantine/core": "^3.6.11",
-    "@mantine/dates": "^3.6.11",
-    "@mantine/dropzone": "^3.6.11",
-    "@mantine/hooks": "^3.6.11",
-    "@mantine/modals": "^3.6.11",
-    "@mantine/next": "^3.6.11",
-    "@mantine/notifications": "^3.6.11",
-    "@mantine/prism": "^3.6.11",
-    "@mantine/rte": "^3.6.11",
-    "axios": "^0.26.0",
+    "@mantine/core": "^4.0.4",
+    "@mantine/dates": "^4.0.4",
+    "@mantine/dropzone": "^4.0.4",
+    "@mantine/form": "^4.0.4",
+    "@mantine/hooks": "^4.0.4",
+    "@mantine/modals": "^4.0.4",
+    "@mantine/next": "^4.0.4",
+    "@mantine/notifications": "^4.0.4",
+    "@mantine/prism": "^4.0.4",
+    "@mantine/rte": "^4.0.4",
+    "@mantine/spotlight": "^4.0.4",
+    "axios": "^0.26.1",
     "dayjs": "^1.10.8",
-    "extracted-loader": "^1.0.7",
-    "file-loader": "^6.2.0",
-    "ignore-loader": "^0.1.2",
-    "img-loader": "^4.0.0",
-    "js-cookie": "^3.0.1",
-    "jwt-decode": "^3.1.2",
     "next": "12.1.0",
-    "next-compose-plugins": "^2.2.1",
-    "next-optimized-images": "^2.6.2",
     "react": "17.0.2",
-    "react-dom": "17.0.2",
-    "sharp": "^0.30.1",
-    "swr": "^1.2.2",
-    "url-loader": "^4.1.1"
+    "react-dom": "17.0.2"
   },
   "devDependencies": {
-    "@types/node": "^17.0.21",
-    "@types/react": "^17.0.39",
-    "eslint": "8.10.0",
+    "eslint": "8.11.0",
     "eslint-config-next": "12.1.0"
   }
 }
