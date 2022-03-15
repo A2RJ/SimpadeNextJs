@@ -13,12 +13,17 @@ export default function Layout({ children }) {
           content="minimum-scale=1, initial-scale=1, width=device-width"
         />
       </Head>
+
+      <Script src="/core/jquery-3.6.0.slim.min.js" />
+      <Script src="/core/libs.min.js" />
+      <Script src="/core/external.min.js" />
+      <Script src="/hope-ui.js" />
+
       <SideBar />
       <main
         className="main-content"
         style={{
           backgroundColor: "#dedede",
-          minHeight: "100vh",
         }}
       >
         <div className="position-relative iq-banner">
@@ -26,21 +31,15 @@ export default function Layout({ children }) {
           <Card
             shadow="sm"
             padding="lg"
-            className="m-1 mt-3"
+            className="m-1 mt-3 mb-3"
             style={{
-              minHeight: "calc(100vh - 80px)",
+              minHeight: "100vh",
             }}
           >
             <Container>{children}</Container>
           </Card>
         </div>
-        <div className="conatiner-fluid content-inner mt-n5 py-0"></div>
       </main>
-
-      <Script src="/core/jquery-3.6.0.slim.min.js" />
-      <Script src="/core/libs.min.js" />
-      <Script src="/core/external.min.js" />
-      <Script src="/hope-ui.js" />
     </>
   );
 }
