@@ -1,14 +1,12 @@
 import { useRouter } from "next/router";
 import axios from "axios";
 import "../styles/Home.module.css";
-import Dashboard from "./simpade/dashboard/dashboard";
 import Login from "../components/form/login";
-import Auth from "../lib/Auth";
-import { useReducer } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Button } from "@mantine/core";
 import { decremented, incremented } from "../reducer/testing";
 import { isLogin } from "../reducer/auth";
+import Indonesia from "../lib/indonesia";
 
 export async function getServerSideProps() {
   let data = await axios
@@ -28,6 +26,9 @@ export default function Home({ data }) {
   const testValue = useSelector((state) => state.testingValue.value);
   const tokenFromReducer = useSelector((state) => state.auth);
   const dispacth = useDispatch();
+  const desa = Indonesia.Desa()
+
+  console.log(desa);
   return (
     <>
       <Button onClick={() => dispacth(incremented())}>incremented</Button>
