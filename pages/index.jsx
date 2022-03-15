@@ -26,7 +26,7 @@ export default function Home({ data }) {
   const testValue = useSelector((state) => state.testingValue.value);
   const tokenFromReducer = useSelector((state) => state.auth);
   const dispacth = useDispatch();
-  const desa = Indonesia.Desa()
+  const desa = Indonesia.desa()
 
   console.log(desa);
   return (
