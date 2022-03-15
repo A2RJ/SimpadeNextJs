@@ -26,9 +26,9 @@ export default function Home({ data }) {
   const testValue = useSelector((state) => state.testingValue.value);
   const tokenFromReducer = useSelector((state) => state.auth);
   const dispacth = useDispatch();
-  const desa = Indonesia.desa()
+  const { dataDesa } = Indonesia.desa();
+  console.log(dataDesa);
 
-  console.log(desa);
   return (
     <>
       <Button onClick={() => dispacth(incremented())}>incremented</Button>
