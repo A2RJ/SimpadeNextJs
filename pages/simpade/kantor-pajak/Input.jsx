@@ -10,26 +10,11 @@ import {
 import { DatePicker } from "@mantine/dates";
 import { useForm } from "@mantine/hooks";
 import { useRef, useState } from "react";
-import {
-  kodePos,
-  kotaKab,
-  kecamatan,
-  desaKel,
-} from "../../../lib/indonesia";
+import Indonesia from "../../../lib/indonesia";
 
 export async function getServerSideProps() {
-  const data = await kotaKab()
-    .then((res) => res.json())
-    .then((data) =>
-      data.map((item) => {
-        return {
-          ...item,
-          value: item.city_id,
-          label: item.city_name,
-        };
-      })
-    );
-
+  const { dataKabupaten } = await Indonesia.kabupaten();
+  const data = JSON.stringify(dataKabupaten);
   return {
     props: {
       data: data || [],
@@ -38,6 +23,15 @@ export async function getServerSideProps() {
 }
 
 export default function Input({ data }) {
+  let provinsi = JSON.parse(data);
+  provinsi = provinsi?.map((item) => {
+    return {
+      ...item,
+      value: item.city_id,
+      label: item.city_name,
+    };
+  });
+
   const [opened, setOpened] = useState(false);
   const refProv = useRef();
   const refKecamatan = useRef();
@@ -101,65 +95,14 @@ export default function Input({ data }) {
     },
   });
 
-  const getKecamatan = async (e) => {
-    const kec = await kecamatan()
-      .then((data) => data.json())
-      .then((data) => data.filter((item) => item.city_id === e))
-      .then((data) =>
-        data.map((item) => {
-          return {
-            ...item,
-            value: item.dis_id,
-            label: item.dis_name,
-          };
-        })
-      );
-    setKecamatan(kec);
-    if (!e) {
-      refKecamatan.current.focus();
-      setKelurahan([]);
-      refDesaKel.current.focus();
-      refProv.current.focus();
-    }
-    form.setFieldValue("kodepos", "");
-  };
+  const getKecamatan = async (e) => {};
 
-  const getKelurahan = async (e) => {
-    const kel = await desaKel()
-      .then((data) => data.json())
-      .then((data) => data.filter((item) => item.dis_id === e))
-      .then((data) =>
-        data.map((item) => {
-          return {
-            ...item,
-            value: item.subdis_id,
-            label: item.subdis_name,
-          };
-        })
-      );
-    setKelurahan(kel);
-    form.setFieldValue("kodepos", "");
-  };
+  const getKelurahan = async (e) => {};
 
-  const getKodePos = async (e) => {
-    const kel = await kodePos()
-      .then((data) => data.json())
-      .then((data) => data.filter((item) => item.subdis_id === e));
-    form.setFieldValue("kodepos", kel.length > 0 ? kel[0].postal_code : "");
-  };
+  const getKodePos = async (e) => {};
 
   const handleSubmit = (values) => {
-    setOpened(true)
     console.log(values);
-    return (
-      <Modal
-        opened={opened}
-        onClose={() => setOpened(false)}
-        title="Introduce yourself!"
-      >
-        {JSON.stringify(values)}
-      </Modal>
-    );
   };
 
   return (
@@ -173,7 +116,19 @@ export default function Input({ data }) {
       >
         Instansi Pajak Daerah
       </Title>
-      <form onSubmit={form.onSubmit((values) => handleSubmit(values))}>
+      <Modal
+        opened={opened}
+        onClose={() => setOpened(false)}
+        title="Introduce yourself!"
+      >
+        JAJAJAJJA
+      </Modal>
+
+      <form
+        onSubmit={form.onSubmit((values) => {
+          setOpened(true), handleSubmit(values);
+        })}
+      >
         <Grid gutter={50}>
           <Grid.Col md={6} lg={6}>
             <Grid>
@@ -225,7 +180,7 @@ export default function Input({ data }) {
                   transitionTimingFunction="ease"
                   searchable
                   clearable
-                  data={data}
+                  data={provinsi}
                   ref={refProv}
                   onChange={(e) => getKecamatan(e)}
                 />

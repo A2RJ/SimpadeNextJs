@@ -7,36 +7,25 @@ import { Button } from "@mantine/core";
 import { decremented, incremented } from "../reducer/testing";
 import { isLogin } from "../reducer/auth";
 import Indonesia from "../lib/indonesia";
+import { useEffect } from "react";
 
 export async function getServerSideProps() {
-  let data = await axios
-    .get("https://jsonplaceholder.typicode.com/todos/1")
-    .then((res) => res.data)
-    .catch((err) => err);
+  const { dataKabupaten } = await Indonesia.kabupaten();
+  let data = JSON.stringify(dataKabupaten);
 
   return {
     props: {
-      data: data || [],
+      data: data,
     },
   };
 }
 
 export default function Home({ data }) {
-  const router = useRouter();
-  const testValue = useSelector((state) => state.testingValue.value);
-  const tokenFromReducer = useSelector((state) => state.auth);
-  const dispacth = useDispatch();
-  const { dataDesa } = Indonesia.desa();
-  console.log(dataDesa);
+
+  console.log(JSON.parse(data));
 
   return (
     <>
-      <Button onClick={() => dispacth(incremented())}>incremented</Button>
-      {testValue}
-      <Button onClick={() => dispacth(decremented())}>decremented</Button>
-      <Button onClick={() => dispacth(isLogin())}>Get Token</Button>
-      {tokenFromReducer.isAuthenticated}
-
       <Login />
     </>
   );
