@@ -1,32 +1,17 @@
-import { useRouter } from "next/router";
-import axios from "axios";
 import "../styles/Home.module.css";
-import Login from "../components/form/login";
-import { useDispatch, useSelector } from "react-redux";
-import { Button } from "@mantine/core";
-import { decremented, incremented } from "../reducer/testing";
-import { isLogin } from "../reducer/auth";
-import Indonesia from "../lib/indonesia";
-import { useEffect } from "react";
+import Dashboard from "./simpade/dashboard/dashboard";
+import { useSelector } from "react-redux";
 
 export async function getServerSideProps() {
-  const { dataKabupaten } = await Indonesia.kabupaten();
-  let data = JSON.stringify(dataKabupaten);
-
   return {
     props: {
-      data: data,
+      data: [],
     },
   };
 }
 
-export default function Home({ data }) {
+export default function Home({ data, status = false }) {
+  const auth = useSelector((state) => state.auth.isAuthenticated);
 
-  console.log(JSON.parse(data));
-
-  return (
-    <>
-      <Login />
-    </>
-  );
+  return <Dashboard />;
 }

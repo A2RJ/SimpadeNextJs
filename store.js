@@ -4,7 +4,7 @@ import testing from "./reducer/testing";
 
 export const store = configureStore({
   reducer: {
-    testingValue: testing,
+    testing,
     auth,
   },
 });

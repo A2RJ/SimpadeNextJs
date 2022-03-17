@@ -4,8 +4,21 @@ import "../styles/hopeui/Hopeui.css";
 import Layout from "../components/layout/Layout";
 import { store } from "../store";
 import { Provider } from "react-redux";
+import { useEffect, useState } from "react";
+import Auth from "../lib/Auth";
 
 export default function MyApp({ Component, pageProps }) {
+  const [isLogin, setIsLogin] = useState(false);
+
+  useEffect(async () => {
+    const { data, status } = await Auth.getUser();
+    if (status === 200) {
+      setIsLogin(true);
+    } else {
+      await Auth.deleteLogin();
+    }
+  });
+
   return (
     <>
       <Provider store={store}>
@@ -27,9 +40,13 @@ export default function MyApp({ Component, pageProps }) {
             colorScheme: "light",
           }}
         >
-          <Layout>
+          {isLogin ? (
+            <Layout>
+              <Component {...pageProps} />
+            </Layout>
+          ) : (
             <Component {...pageProps} />
-          </Layout>
+          )}
         </MantineProvider>
       </Provider>
     </>

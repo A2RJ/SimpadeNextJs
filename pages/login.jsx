@@ -1,19 +1,14 @@
-import {
-  TextInput,
-  Button,
-  Group,
-  Box,
-  Modal,
-  useMantineTheme,
-} from "@mantine/core";
+import { TextInput, Button, Group, Box } from "@mantine/core";
 import { useForm } from "@mantine/form";
-import { useState } from "react";
-import Auth from "../../lib/Auth";
+import { useDispatch, useSelector } from "react-redux";
+import Auth from "../lib/Auth";
+import { decremented, incremented } from "../reducer/testing";
+import { useRouter } from "next/router";
 
 export default function Login() {
-  const [opened, setOpened] = useState(false);
-  const [formValues, setFormValues] = useState({});
-  const theme = useMantineTheme();
+  const state = useSelector((state) => state.testing.value);
+  const dispacth = useDispatch();
+  const route = useRouter();
 
   const form = useForm({
     initialValues: {
@@ -33,23 +28,24 @@ export default function Login() {
       password: values.password,
     });
 
-    setOpened(true);
-    setFormValues(data);
+    console.log("Status Login", data, status);
+    if (status) {
+      route.push("/");
+    }
   };
 
   return (
     <>
-      <Box sx={{ maxWidth: 300 }} mx="auto">
-        <Modal
-          centered
-          overlayOpacity={0.95}
-          overlayColor={theme.colors.gray[2]}
-          opened={opened}
-          onClose={() => setOpened(false)}
-          title="Introduce yourself!"
-        >
-          {JSON.stringify(formValues)}
-        </Modal>
+      <Box sx={{ maxWidth: 300 }} mx="auto" my="auto">
+        <Button variant="primary" onClick={() => dispacth(incremented())}>
+          Tambah
+        </Button>
+        <br />
+        {state}
+        <br />
+        <Button variant="primary" onClick={() => dispacth(decremented())}>
+          Kurang
+        </Button>
 
         <form onSubmit={form.onSubmit((values) => formValue(values))}>
           <TextInput

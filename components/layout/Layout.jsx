@@ -14,7 +14,9 @@ export default function Layout({ children }) {
         />
       </Head>
 
-      <Script src="/core/jquery-3.6.0.slim.min.js" />
+      <Script src="https://code.jquery.com/jquery-3.6.0.slim.min.js"
+  integrity="sha256-u7e5khyithlIdTpu22PHhENmPcRdFiHRjhAuHcs05RI="
+  crossorigin="anonymous" />
       <Script src="/core/libs.min.js" />
       <Script src="/core/external.min.js" />
       <Script src="/hope-ui.js" />
