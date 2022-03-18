@@ -8,3 +8,7 @@
 - Setting menu masing-masing by user
 - Middleware filter menu by user
 - 3 Form pertama
+
+# Custom dashboard
+
+- npm install animate.css --save
