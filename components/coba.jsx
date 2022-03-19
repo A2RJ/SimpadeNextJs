@@ -34,7 +34,7 @@ export default function Coba() {
             >
               <span className="block">Blog</span>
               <span className="absolute bottom-0 left-0 -mb-1 inline-block h-0.5 w-full overflow-hidden">
-                <span className="absolute inset-0 inline-block h-1 h-full w-full transform bg-gray-900" />
+                <span className="absolute inset-0 inline-block h-full w-full transform bg-gray-900" />
               </span>
             </a>
           </nav>
@@ -58,7 +58,7 @@ export default function Coba() {
       </section> */}
 
       <section className="bg-gray-50 py-20">
-        <div className="container mx-auto max-w-6xl items-center px-4 px-10 sm:px-20 md:px-32 lg:px-16">
+        <div className="container mx-auto max-w-6xl items-center px-4  sm:px-20 md:px-32 lg:px-16">
           <div className="-mx-3 flex flex-wrap items-center">
             <div className="lg:order-0 order-1 w-full px-3 lg:w-1/2">
               <div className="w-full lg:max-w-md">
@@ -66,7 +66,7 @@ export default function Coba() {
                   Jam-packed with all the tools you need to succeed!
                 </h2>
                 <p className="mb-4 font-medium tracking-tight text-gray-400 xl:mb-6">
-                  It's never been easier to build a business of your own. Our
+                  {/* It's never been easier to build a business of your own. Our */}
                   tools will help you with the following:
                 </p>
                 <ul>
@@ -131,11 +131,11 @@ export default function Coba() {
               </div>
             </div>
             <div className="order-0 mb-12 w-full px-3 lg:order-1 lg:mb-0 lg:w-1/2">
-              <img
+              {/* <img
                 className="mx-auto sm:max-w-sm lg:max-w-full"
                 src="https://cdn.devdojo.com/images/november2020/feature-graphic.png"
                 alt="feature image"
-              />
+              /> */}
             </div>
           </div>
         </div>

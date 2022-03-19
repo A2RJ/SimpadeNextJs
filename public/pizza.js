@@ -1,5 +1,4 @@
 const menu = document.getElementsByClassName("dropdown-menu");
-
 for (let index = 0; index < menu.length; index++) {
   menu[index].addEventListener("click", function () {
     const child = menu[index].children[1];
@@ -28,8 +27,21 @@ for (let index = 0; index < menu.length; index++) {
 
 const sidebarToggle = document.getElementsByClassName("sidebar-toggle")[0];
 const sidebar = document.getElementsByClassName("sidebar")[0];
+const content = document.getElementsByClassName("content")[0];
+
 sidebarToggle.addEventListener("click", function () {
-  sidebar.classList.toggle("hidden");
-  // if (window.innerWidth < 800) {
-  // }
+  if (window.innerWidth < 767) {
+    sidebar.classList.toggle("hidden");
+    if (sidebar.classList.contains("hidden")) {
+      content.classList.remove("blur-sm");
+    } else {
+      content.classList.add("blur-sm");
+    }
+  }
 });
+
+window.onresize = function () {
+  if (window.innerWidth > 767) {
+    content.classList.remove("blur-sm");
+  }
+};
