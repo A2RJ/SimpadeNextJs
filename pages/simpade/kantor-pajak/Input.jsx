@@ -13,8 +13,8 @@ import { useRef, useState } from "react";
 import Indonesia from "../../../lib/indonesia";
 
 export async function getServerSideProps() {
-  const { dataKabupaten } = await Indonesia.kabupaten();
-  const data = JSON.stringify(dataKabupaten);
+  // const { dataKabupaten } = await Indonesia.kabupaten();
+  // const data = JSON.stringify(dataKabupaten);
   return {
     props: {
       data: data || [],
@@ -23,7 +23,8 @@ export async function getServerSideProps() {
 }
 
 export default function Input({ data }) {
-  let provinsi = JSON.parse(data);
+  // let provinsi = JSON.parse(data);
+  let provinsi = [];
   provinsi = provinsi?.map((item) => {
     return {
       ...item,

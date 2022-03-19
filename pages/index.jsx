@@ -3,9 +3,12 @@ import { useSelector } from "react-redux";
 import Image from "next/image";
 import Script from "next/script";
 import Coba from "../components/coba";
+import  InputForm from "./simpade/kantor-pajak/Input";
 import { AiOutlineHome } from "react-icons/ai";
 import { VscChevronDown } from "react-icons/vsc";
+import { MdOutlineMoney } from "react-icons/md";
 import { BiMenuAltLeft } from "react-icons/bi";
+import { SiAudiomack, SiPostman, SiSparkpost } from "react-icons/si";
 
 export async function getServerSideProps() {
   return {
@@ -21,30 +24,35 @@ export default function Home({ data, status = false }) {
     {
       name: "Home",
       type: "dropdown",
+      icon: <AiOutlineHome />,
     },
     {
       name: "Audience",
       type: "single",
+      icon: <SiAudiomack />,
     },
     {
       name: "Post",
       type: "dropdown",
+      icon: <SiPostman />,
     },
     {
       name: "Schedule",
       type: "single",
+      icon: <SiSparkpost />,
     },
     {
       name: "Income",
       type: "single",
+      icon: <MdOutlineMoney />,
     },
   ];
   return (
     <>
       <div className="flex">
-        <div className="sidebar hidden border-r-2 md:block">
-          <div className="flex h-screen w-0 grid-cols-2 flex-col items-center bg-gray-50 md:w-[200px] lg:w-[250px]">
-            <div className="mx-auto my-8 flex drop-shadow-xl hover:cursor-pointer">
+        <div className="sidebar hidden md:block ">
+          <div className="h-screen w-[250px] bg-gray-50 md:mt-0 md:w-[200px] lg:w-[250px]">
+            <div className="mx-auto flex drop-shadow-xl hover:cursor-pointer">
               <Image src="/tailwindcss-logotype.svg" width={200} height={50} />
             </div>
             <ul className="mt-3 grid gap-2">
@@ -56,7 +64,7 @@ export default function Home({ data, status = false }) {
                   } group p-2 pr-5 hover:cursor-pointer hover:rounded-sm hover:bg-white hover:text-blue-400`}
                 >
                   <span className="flex flex-row items-center space-x-3">
-                    <AiOutlineHome />
+                    {item.icon}
                     <span>{item.name}</span>
                     {item.type === "dropdown" ? (
                       <VscChevronDown className="dropdown-icon" />
@@ -83,8 +91,8 @@ export default function Home({ data, status = false }) {
         </div>
         <div className="h-screen w-full">
           <div className="flex h-16 justify-between border-b-2 px-5 drop-shadow-xl md:border-b-0">
-            <div className="flex items-center hover:cursor-pointer">
-              <BiMenuAltLeft className="w-10 h-14" />
+            <div className="sidebar-toggle flex items-center hover:cursor-pointer">
+              <BiMenuAltLeft className="h-14 w-10" />
             </div>
             <div className="flex items-center hover:cursor-pointer md:hidden">
               <Image src="/tailwindcss-logotype.svg" width={150} height={100} />
@@ -98,6 +106,16 @@ export default function Home({ data, status = false }) {
               <div className="ml-4 hidden border-l-2 pl-3 md:block">
                 <p className="text-lg font-semibold">John Doe</p>
               </div>
+            </div>
+          </div>
+          <div className="container w-screen">
+            <div class="grid grid-flow-col grid-rows-4 gap-4">
+              <div>01</div>
+              <div>01</div>
+              <div>01</div>
+              <div>01</div>
+              <div>01</div>
+              <div>01</div>
             </div>
           </div>
         </div>

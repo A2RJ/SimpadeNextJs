@@ -14,7 +14,7 @@ for (let index = 0; index < menu.length; index++) {
       svg.classList.add("rotateIn");
       svg.classList.remove("rotateOut");
     }
-    
+
     menu[index].classList.toggle("active");
     for (let index2 = 0; index2 < menu.length; index2++) {
       if (index !== index2) {
@@ -25,3 +25,11 @@ for (let index = 0; index < menu.length; index++) {
     }
   });
 }
+
+const sidebarToggle = document.getElementsByClassName("sidebar-toggle")[0];
+const sidebar = document.getElementsByClassName("sidebar")[0];
+sidebarToggle.addEventListener("click", function () {
+  sidebar.classList.toggle("hidden");
+  // if (window.innerWidth < 800) {
+  // }
+});
