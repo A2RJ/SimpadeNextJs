@@ -2,6 +2,10 @@ import "../styles/Home.module.css";
 import { useSelector } from "react-redux";
 import Image from "next/image";
 import Script from "next/script";
+import Coba from "../components/coba";
+import { AiOutlineHome } from "react-icons/ai";
+import { VscChevronDown } from "react-icons/vsc";
+import { BiMenuAltLeft } from "react-icons/bi";
 
 export async function getServerSideProps() {
   return {
@@ -37,67 +41,64 @@ export default function Home({ data, status = false }) {
   ];
   return (
     <>
-      <div className="font-sans">
-        {/* Topbar */}
-        <div className="m-0 h-16 w-full border-b">
-          <div className="flex h-full items-center justify-between">
-            <div className="flex w-[250px] items-center justify-center">
-              <Image
-                className=""
-                src="/tailwindcss-logotype.svg"
-                width={200}
-                height={100}
-              />
+      <div className="flex">
+        <div className="sidebar hidden border-r-2 md:block">
+          <div className="flex h-screen w-0 grid-cols-2 flex-col items-center bg-gray-50 md:w-[200px] lg:w-[250px]">
+            <div className="mx-auto my-8 flex drop-shadow-xl hover:cursor-pointer">
+              <Image src="/tailwindcss-logotype.svg" width={200} height={50} />
             </div>
-            <div className="visible mr-10 hidden items-center md:block">
-              <div className="flex">
-                <img
-                  className="h-8 w-8 rounded-full "
-                  src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
-                  alt="avatar"
-                />
-                <div className="ml-4 border-l-2 pl-3 ">
-                  <p className="text-lg font-semibold">John Doe</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div className="flex">
-          {/* Sidebar */}
-          <div className="hidden h-screen w-[300px] justify-center border-r-4 text-sm font-bold sm:block  ">
-            <ul className="mt-3">
+            <ul className="mt-3 grid gap-2">
               {menu.map((item, index) => (
                 <li
                   key={index}
                   className={`${
-                    item.type === "dropdown" ? "dropdown-menu" : ""
-                  } mx-10 my-1 rounded-sm leading-10 text-slate-700 hover:cursor-pointer hover:bg-slate-100 hover:text-slate-900`}
+                    item.type === "dropdown" ? "dropdown-menu " : ""
+                  } group p-2 pr-5 hover:cursor-pointer hover:rounded-sm hover:bg-white hover:text-blue-400`}
                 >
-                  <span className="pl-5">
-                    ICON {item.name}
-                    {item.type === "dropdown" ? "D" : ""}
+                  <span className="flex flex-row items-center space-x-3">
+                    <AiOutlineHome />
+                    <span>{item.name}</span>
                     {item.type === "dropdown" ? (
-                      <ul className="dropdown-item-parent leading-10 hidden border-l-4 ml-2 text-xs">
-                        <li className="dropdown-item">
-                          <span className="pl-5">ICON {item.name}</span>
-                        </li>
-                        <li className="dropdown-item">
-                          <span className="pl-5">ICON {item.name}</span>
-                        </li>
-                      </ul>
+                      <VscChevronDown className="dropdown-icon" />
                     ) : (
                       ""
                     )}
                   </span>
+                  {item.type === "dropdown" ? (
+                    <ul className="dropdown-item-parent ml-2 hidden border-l-2 text-xs leading-10">
+                      <li className="dropdown-item">
+                        <span className="pl-5">ICON {item.name}</span>
+                      </li>
+                      <li className="dropdown-item">
+                        <span className="pl-5">ICON {item.name}</span>
+                      </li>
+                    </ul>
+                  ) : (
+                    ""
+                  )}
                 </li>
               ))}
             </ul>
           </div>
-          {/* Content */}
-          <div className="h-screen w-full bg-gray-50">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Odio,
-            cumque.
+        </div>
+        <div className="h-screen w-full">
+          <div className="flex h-16 justify-between border-b-2 px-5 drop-shadow-xl md:border-b-0">
+            <div className="flex items-center hover:cursor-pointer">
+              <BiMenuAltLeft className="w-10 h-14" />
+            </div>
+            <div className="flex items-center hover:cursor-pointer md:hidden">
+              <Image src="/tailwindcss-logotype.svg" width={150} height={100} />
+            </div>
+            <div className="flex items-center hover:cursor-pointer">
+              <img
+                className="h-8 w-8 rounded-full "
+                src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+                alt="avatar"
+              />
+              <div className="ml-4 hidden border-l-2 pl-3 md:block">
+                <p className="text-lg font-semibold">John Doe</p>
+              </div>
+            </div>
           </div>
         </div>
       </div>

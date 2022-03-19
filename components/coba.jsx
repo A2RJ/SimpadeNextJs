@@ -1,7 +1,7 @@
 export default function Coba() {
   return (
     <>
-      <section className="body-font relative w-full bg-white px-8 text-gray-700">
+      {/* <section className="body-font relative w-full bg-white px-8 text-gray-700">
         <div className="container mx-auto flex max-w-7xl flex-col flex-wrap items-center justify-between py-5 md:flex-row">
           <a
             href="#_"
@@ -55,7 +55,7 @@ export default function Coba() {
             </span>
           </div>
         </div>
-      </section>
+      </section> */}
 
       <section className="bg-gray-50 py-20">
         <div className="container mx-auto max-w-6xl items-center px-4 px-10 sm:px-20 md:px-32 lg:px-16">
