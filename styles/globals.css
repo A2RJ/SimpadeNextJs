@@ -6,3 +6,17 @@
   background-color: #e1effe;
   color: #76a9fa;
 }
+
+/* show hide with animation */
+.sidebar.hidden {
+  animation: sidebar-show 0.5s;
+}
+
+@keyframes sidebar-show {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}

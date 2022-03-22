@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import Image from "next/image";
 import Script from "next/script";
 import { AiOutlineHome } from "react-icons/ai";
-import { VscChevronDown } from "react-icons/vsc";
+import { VscChevronDown, VscChromeClose } from "react-icons/vsc";
 import { MdOutlineMoney } from "react-icons/md";
 import { BiMenuAltLeft } from "react-icons/bi";
 import { SiAudiomack, SiPostman, SiSparkpost } from "react-icons/si";
@@ -48,15 +48,17 @@ export default function Home({ data, status = false }) {
   return (
     <>
       <div className="flex">
-        <div className="sidebar hidden md:block">
+        <div className="sidebar hidden transition md:block">
           <div className="fixed mt-16 h-screen w-[250px] bg-gray-50 md:relative md:mt-0 md:w-[200px] lg:w-[250px]">
-            <div className="mx-auto hidden drop-shadow-xl hover:cursor-pointer md:block">
-              <Image
-                src="/tailwindcss-logotype.svg"
-                alt=""
-                width={200}
-                height={50}
-              />
+            <div className="flex">
+              <div className="mx-auto hidden drop-shadow-xl hover:cursor-pointer md:block">
+                <Image
+                  src="/tailwindcss-logotype.svg"
+                  alt=""
+                  width={200}
+                  height={50}
+                />
+              </div>
             </div>
             <ul role="list" className="mt-3 grid gap-2 ">
               {menu.map((item, index) => (
@@ -91,9 +93,10 @@ export default function Home({ data, status = false }) {
           </div>
         </div>
         <div className="h-screen w-full">
-          <div className="flex h-16 justify-between border-b-2 px-5 drop-shadow-xl md:border-b-0">
-            <div className="sidebar-toggle flex items-center hover:cursor-pointer">
-              <BiMenuAltLeft className="h-14 w-10" />
+          <div className="flex h-16 justify-between border-b-2 pl-3 drop-shadow-xl sm:pl-3 md:border-b-0 md:pl-3">
+            <div className="sidebar-toggle flex items-center transition">
+              <BiMenuAltLeft className="md:h-13 h-7 w-7" />
+              <VscChromeClose className="hidden h-7 w-7" />
             </div>
             <div className="flex items-center hover:cursor-pointer md:hidden">
               <Image
@@ -111,7 +114,7 @@ export default function Home({ data, status = false }) {
                 src="/images/avatars/01.png"
                 alt="avatar"
               />
-              <div className="ml-4 hidden border-l-2 pl-3 md:block">
+              <div className="ml-4 hidden border-l-2 px-3 md:block">
                 <p className="text-lg font-semibold">John Doe</p>
               </div>
             </div>
