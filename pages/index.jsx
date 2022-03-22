@@ -7,6 +7,7 @@ import { VscChevronDown, VscChromeClose } from "react-icons/vsc";
 import { MdOutlineMoney } from "react-icons/md";
 import { BiMenuAltLeft } from "react-icons/bi";
 import { SiAudiomack, SiPostman, SiSparkpost } from "react-icons/si";
+import Head from "next/head";
 
 export async function getServerSideProps() {
   return {
@@ -45,10 +46,14 @@ export default function Home({ data, status = false }) {
       icon: <MdOutlineMoney />,
     },
   ];
+
   return (
     <>
+      <Head>
+        <title>Home</title>
+      </Head>
       <div className="flex">
-        <div className="sidebar hidden transition md:block">
+        <div className="sidebar hidden select-none transition md:block">
           <div className="fixed mt-16 h-screen w-[250px] bg-gray-50 md:relative md:mt-0 md:w-[200px] lg:w-[250px]">
             <div className="flex">
               <div className="mx-auto hidden drop-shadow-xl hover:cursor-pointer md:block">

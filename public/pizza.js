@@ -1,80 +1,98 @@
-sideBar();
-menu();
+const sidebarToggle = document.getElementsByClassName("sidebar-toggle")[0];
+const toggleOpenIcon = sidebarToggle.firstElementChild;
+const toggleCloseIcon = sidebarToggle.lastElementChild;
+const sidebar = document.getElementsByClassName("sidebar")[0];
 
-function sideBar() {
-  const sidebarToggle = document.getElementsByClassName("sidebar-toggle")[0];
-  const sidebar = document.getElementsByClassName("sidebar")[0];
-
-  sidebarToggle.addEventListener("click", function () {
-    if (window.innerWidth <= 767) {
-      sidebar.classList.toggle("hidden");
-
-      if (sidebar.classList.contains("hidden")) {
-        sidebarToggle.style.transform = "rotate(0deg)";
-        sidebarToggle.firstElementChild.style.display = "block";
-        sidebarToggle.lastElementChild.style.display = "none";
-      } else {
-        sidebarToggle.style.transform = "rotate(360deg)";
-        sidebarToggle.lastElementChild.style.display = "block";
-        sidebarToggle.firstElementChild.style.display = "none";
-      }
+/**
+ * on resize window event handler
+ */
+window.onresize = function () {
+  if (window.innerWidth > 767) {
+    setStyle(toggleOpenIcon, "block");
+    setStyle(toggleCloseIcon, "none");
+  } else {
+    if (!sidebar.classList.contains("hidden")) {
+      setStyle(toggleOpenIcon, "none");
+      setStyle(toggleCloseIcon, "block");
     }
-  });
+  }
+};
+
+/**
+ * toggle menu open and close
+ * @param {*} element toggle element
+ * @param {*} style display style
+ */
+function setStyle(element, style) {
+  element.style.display = style;
 }
 
-function menu() {
-  const dropdownMenu = document.getElementsByClassName("dropdown-menu");
-  const singleMenu = document.getElementsByClassName("single-menu");
+sidebarToggle.addEventListener("click", function () {
+  if (window.innerWidth <= 767) {
+    sidebar.classList.toggle("hidden");
 
+    if (sidebar.classList.contains("hidden")) {
+      sidebar.classList.remove("animate-left");
+      sidebarToggle.style.transform = "rotate(0deg)";
+      setStyle(toggleOpenIcon, "block");
+      setStyle(toggleCloseIcon, "none");
+    } else {
+      sidebar.classList.add("animate-left");
+      sidebarToggle.style.transform = "rotate(360deg)";
+      setStyle(toggleOpenIcon, "none");
+      setStyle(toggleCloseIcon, "block");
+    }
+  }
+});
+
+const dropdownMenu = document.getElementsByClassName("dropdown-menu");
+const singleMenu = document.getElementsByClassName("single-menu");
+
+/**
+ * close all dropdown menu and single menu
+ * @param {*} menu is the menu element
+ */
+function closeAnotherMenu(menu) {
   for (let index = 0; index < singleMenu.length; index++) {
-    const el = singleMenu[index];
-    el.addEventListener("click", function () {
-      this.classList.contains("active") === false &&
-        this.classList.add("active");
-      for (let index = 0; index < singleMenu.length; index++) {
-        const element = singleMenu[index];
-        if (element !== this) {
-          element.classList.remove("active");
-        }
-      }
-
-      for (let index = 0; index < dropdownMenu.length; index++) {
-        const element = dropdownMenu[index];
-        element.classList.remove("active");
-        element.nextElementSibling.classList.add("hidden");
-        element.getElementsByClassName("dropdown-icon")[0].style.transform =
-          "rotate(0deg)";
-      }
-    });
+    const element = singleMenu[index];
+    if (element !== menu) element.classList.remove("active");
   }
 
   for (let index = 0; index < dropdownMenu.length; index++) {
-    const el = dropdownMenu[index];
-    el.addEventListener("click", function () {
-      const dropdown = this.nextElementSibling;
-      const rotateSvg = this.getElementsByClassName("dropdown-icon")[0];
-
-      dropdown.classList.toggle("hidden");
-      dropdown.classList.contains("hidden")
-        ? ((rotateSvg.style.transform = "rotate(0deg)"),
-          this.classList.remove("active"))
-        : ((rotateSvg.style.transform = "rotate(180deg)"),
-          this.classList.add("active"));
-
-      for (let index = 0; index < dropdownMenu.length; index++) {
-        if (dropdownMenu[index] !== this) {
-          dropdownMenu[index].classList.remove("active");
-          dropdownMenu[index].nextElementSibling.classList.add("hidden");
-          dropdownMenu[index].getElementsByClassName(
-            "dropdown-icon"
-          )[0].style.transform = "rotate(0deg)";
-        }
-      }
-
-      for (let index = 0; index < singleMenu.length; index++) {
-        const element = singleMenu[index];
-        element.classList.remove("active");
-      }
-    });
+    if (dropdownMenu[index] !== menu) {
+      dropdownMenu[index].classList.remove("active");
+      dropdownMenu[index].nextElementSibling.classList.add("hidden");
+      dropdownMenu[index].getElementsByClassName(
+        "dropdown-icon"
+      )[0].style.transform = "rotate(0deg)";
+    }
   }
+}
+
+for (let index = 0; index < singleMenu.length; index++) {
+  const el = singleMenu[index];
+  el.addEventListener("click", function () {
+    this.classList.contains("active") === false && this.classList.add("active");
+
+    closeAnotherMenu(this);
+  });
+}
+
+for (let index = 0; index < dropdownMenu.length; index++) {
+  const el = dropdownMenu[index];
+  el.addEventListener("click", function () {
+    const dropdown = this.nextElementSibling;
+    const rotateSvg = this.getElementsByClassName("dropdown-icon")[0];
+
+    dropdown.classList.toggle("hidden");
+    if (dropdown.classList.contains("hidden")) {
+      rotateSvg.style.transform = "rotate(0deg)";
+      this.classList.remove("active");
+    } else {
+      rotateSvg.style.transform = "rotate(180deg)";
+      this.classList.add("active");
+    }
+
+    closeAnotherMenu(this);
+  });
 }

@@ -7,7 +7,6 @@
   color: #76a9fa;
 }
 
-/* show hide with animation */
 .sidebar.hidden {
   animation: sidebar-show 0.5s;
 }
@@ -18,5 +17,21 @@
   }
   to {
     transform: translateX(0);
+  }
+}
+
+.animate-left {
+  position: relative;
+  animation: animateleft 0.4s;
+}
+
+@keyframes animateleft {
+  from {
+    left: -300px;
+    opacity: 0;
+  }
+  to {
+    left: 0;
+    opacity: 1;
   }
 }
