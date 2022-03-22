@@ -48,29 +48,34 @@ export default function Home({ data, status = false }) {
   return (
     <>
       <div className="flex">
-        <div className="sidebar hidden md:block ">
+        <div className="sidebar hidden md:block">
           <div className="fixed mt-16 h-screen w-[250px] bg-gray-50 md:relative md:mt-0 md:w-[200px] lg:w-[250px]">
             <div className="mx-auto hidden drop-shadow-xl hover:cursor-pointer md:block">
-              <Image src="/tailwindcss-logotype.svg" alt="" width={200} height={50} />
+              <Image
+                src="/tailwindcss-logotype.svg"
+                alt=""
+                width={200}
+                height={50}
+              />
             </div>
             <ul role="list" className="mt-3 grid gap-2 ">
               {menu.map((item, index) => (
                 <li
                   key={index}
-                  className={`${
-                    item.type === "dropdown" ? "dropdown-menu " : ""
-                  } group p-2 pr-5 hover:cursor-pointer hover:rounded-sm hover:bg-white hover:text-blue-400 `}
+                  className="group p-2 pr-5 hover:cursor-pointer hover:rounded-sm hover:bg-white hover:text-blue-400"
                 >
-                  <span className="flex flex-row items-center space-x-3">
+                  <span
+                    className={`${
+                      item.type === "dropdown" ? "dropdown-menu" : "single-menu"
+                    } flex flex-row items-center space-x-3`}
+                  >
                     {item.icon}
                     <span>{item.name}</span>
-                    {item.type === "dropdown" ? (
-                      <VscChevronDown className="dropdown-icon" />
-                    ) : (
-                      ""
+                    {item.type === "dropdown" && (
+                      <VscChevronDown className="dropdown-icon transition-transform duration-500" />
                     )}
                   </span>
-                  {item.type === "dropdown" ? (
+                  {item.type === "dropdown" && (
                     <ul className="dropdown-item-parent ml-2 hidden border-l-2 text-xs text-slate-500">
                       <li className="dropdown-item leading-10 hover:text-blue-400">
                         <span className="pl-5">ICON {item.name}</span>
@@ -79,8 +84,6 @@ export default function Home({ data, status = false }) {
                         <span className="pl-5">ICON {item.name}</span>
                       </li>
                     </ul>
-                  ) : (
-                    ""
                   )}
                 </li>
               ))}
@@ -93,14 +96,19 @@ export default function Home({ data, status = false }) {
               <BiMenuAltLeft className="h-14 w-10" />
             </div>
             <div className="flex items-center hover:cursor-pointer md:hidden">
-              <Image src="/tailwindcss-logotype.svg" alt="" width={150} height={100} />
+              <Image
+                src="/tailwindcss-logotype.svg"
+                alt=""
+                width={150}
+                height={100}
+              />
             </div>
             <div className="flex items-center hover:cursor-pointer">
               <Image
-              width={100}
-              height={100}
+                width={40}
+                height={40}
                 className="h-8 w-8 rounded-full "
-                src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+                src="/images/avatars/01.png"
                 alt="avatar"
               />
               <div className="ml-4 hidden border-l-2 pl-3 md:block">

@@ -6,13 +6,3 @@
   background-color: #e1effe;
   color: #76a9fa;
 }
-
-.rotateIn {
-  transform: rotate(180deg);
-  transition: all 0.5s ease-in-out;
-}
-
-.rotateOut {
-  transform: rotate(0deg);
-  transition: all 0.5s ease-in-out;
-}
