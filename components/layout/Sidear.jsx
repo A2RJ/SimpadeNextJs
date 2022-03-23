@@ -20,7 +20,7 @@ export default function SideBar({ menu }) {
           {menu.map((item, index) => (
             <li
               key={index}
-              className="group p-2 pr-5 hover:cursor-pointer hover:rounded-sm hover:bg-white hover:text-blue-400"
+              className="md:group p-2 pr-5 md:hover:cursor-pointer md:hover:rounded-sm md:hover:bg-white md:hover:text-blue-400"
             >
               <span
                 className={`${
