@@ -1,10 +1,42 @@
-import { Card, Container } from "@mantine/core";
-import Head from "next/head";
+import { useSelector } from "react-redux";
+import Image from "next/image";
 import Script from "next/script";
+import { AiOutlineHome } from "react-icons/ai";
+import { MdOutlineMoney } from "react-icons/md";
+import { SiAudiomack, SiPostman, SiSparkpost } from "react-icons/si";
+import Head from "next/head";
 import SideBar from "./Sidear";
 import TopBar from "./TopBar";
 
 export default function Layout({ children }) {
+  const menu = [
+    {
+      name: "Home",
+      type: "dropdown",
+      icon: <AiOutlineHome />,
+    },
+    {
+      name: "Audience",
+      type: "single",
+      icon: <SiAudiomack />,
+    },
+    {
+      name: "Post",
+      type: "dropdown",
+      icon: <SiPostman />,
+    },
+    {
+      name: "Schedule",
+      type: "single",
+      icon: <SiSparkpost />,
+    },
+    {
+      name: "Income",
+      type: "single",
+      icon: <MdOutlineMoney />,
+    },
+  ];
+
   return (
     <>
       <Head>
@@ -13,35 +45,14 @@ export default function Layout({ children }) {
           content="minimum-scale=1, initial-scale=1, width=device-width"
         />
       </Head>
-
-      <Script src="https://code.jquery.com/jquery-3.6.0.slim.min.js"
-  integrity="sha256-u7e5khyithlIdTpu22PHhENmPcRdFiHRjhAuHcs05RI="
-  crossorigin="anonymous" />
-      <Script src="/core/libs.min.js" />
-      <Script src="/core/external.min.js" />
-      <Script src="/hope-ui.js" />
-
-      <SideBar />
-      <main
-        className="main-content"
-        style={{
-          backgroundColor: "#dedede",
-        }}
-      >
-        <div className="position-relative iq-banner">
+      <div className="flex">
+        <SideBar menu={menu} />
+        <div className="h-screen w-full">
           <TopBar />
-          <Card
-            shadow="sm"
-            padding="lg"
-            className="m-1 mt-3 mb-3"
-            style={{
-              minHeight: "100vh",
-            }}
-          >
-            <Container>{children}</Container>
-          </Card>
+          <div className="content container">{children}</div>
         </div>
-      </main>
+      </div>
+      <Script src="/pizza.js" />
     </>
   );
 }

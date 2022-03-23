@@ -1,110 +1,52 @@
 import ListMenu from "./ListMenu";
+import Image from "next/image";
+import { VscChevronDown } from "react-icons/vsc";
 
-export default function SideBar() {
+export default function SideBar({ menu }) {
   return (
-    <aside className="sidebar sidebar-default navs-rounded-all">
-      <div className="sidebar-header d-flex align-items-center justify-content-start">
-        <a href="../dashboard/index.html" className="navbar-brand">
-          {/*Logo start*/}
-          <svg
-            width={30}
-            className=""
-            viewBox="0 0 30 30"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <rect
-              x="-0.757324"
-              y="19.2427"
-              width={28}
-              height={4}
-              rx={2}
-              transform="rotate(-45 -0.757324 19.2427)"
-              fill="currentColor"
+    <div className="sidebar hidden select-none transition md:block">
+      <div className="fixed mt-16 h-screen w-[250px] bg-gray-50 md:relative md:mt-0 md:w-[200px] lg:w-[250px]">
+        <div className="flex">
+          <div className="mx-auto hidden drop-shadow-xl hover:cursor-pointer md:block">
+            <Image
+              src="/tailwindcss-logotype.svg"
+              alt=""
+              width={200}
+              height={50}
             />
-            <rect
-              x="7.72803"
-              y="27.728"
-              width={28}
-              height={4}
-              rx={2}
-              transform="rotate(-45 7.72803 27.728)"
-              fill="currentColor"
-            />
-            <rect
-              x="10.5366"
-              y="16.3945"
-              width={16}
-              height={4}
-              rx={2}
-              transform="rotate(45 10.5366 16.3945)"
-              fill="currentColor"
-            />
-            <rect
-              x="10.5562"
-              y="-0.556152"
-              width={28}
-              height={4}
-              rx={2}
-              transform="rotate(45 10.5562 -0.556152)"
-              fill="currentColor"
-            />
-          </svg>
-          {/*logo End*/}
-          <h4 className="logo-title">SIMPADE</h4>
-        </a>
-        <div
-          className="sidebar-toggle"
-          data-toggle="sidebar"
-          data-active="true"
-        >
-          <i className="icon">
-            <svg
-              width={20}
-              height={20}
-              viewBox="0 0 24 24"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
+          </div>
+        </div>
+        <ul role="list" className="mt-3 grid gap-2 ">
+          {menu.map((item, index) => (
+            <li
+              key={index}
+              className="group p-2 pr-5 hover:cursor-pointer hover:rounded-sm hover:bg-white hover:text-blue-400"
             >
-              <path
-                d="M4.25 12.2744L19.25 12.2744"
-                stroke="currentColor"
-                strokeWidth="1.5"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-              <path
-                d="M10.2998 18.2988L4.2498 12.2748L10.2998 6.24976"
-                stroke="currentColor"
-                strokeWidth="1.5"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-            </svg>
-          </i>
-        </div>
-      </div>
-      <div className="sidebar-body pt-0 data-scrollbar">
-        <div className="sidebar-list">
-          {/* Sidebar Menu Start */}
-          <ul className="navbar-nav iq-main-menu" id="sidebar-menu">
-            <li className="nav-item static-item">
-              <a
-                className="nav-link static-item disabled"
-                href="#"
-                tabIndex={-1}
+              <span
+                className={`${
+                  item.type === "dropdown" ? "dropdown-menu" : "single-menu"
+                } flex flex-row items-center space-x-3`}
               >
-                <span className="default-icon">Home</span>
-                <span className="mini-icon">-</span>
-              </a>
+                {item.icon}
+                <span>{item.name}</span>
+                {item.type === "dropdown" && (
+                  <VscChevronDown className="dropdown-icon transition-transform duration-500" />
+                )}
+              </span>
+              {item.type === "dropdown" && (
+                <ul className="dropdown-item-parent ml-2 hidden border-l-2 text-xs text-slate-500">
+                  <li className="dropdown-item leading-10 hover:text-blue-400">
+                    <span className="pl-5">ICON {item.name}</span>
+                  </li>
+                  <li className="dropdown-item leading-10 hover:text-blue-400">
+                    <span className="pl-5">ICON {item.name}</span>
+                  </li>
+                </ul>
+              )}
             </li>
-            
-            <ListMenu />
-          </ul>
-          {/* Sidebar Menu End */}
-        </div>
+          ))}
+        </ul>
       </div>
-      <div className="sidebar-footer" />
-    </aside>
+    </div>
   );
 }
