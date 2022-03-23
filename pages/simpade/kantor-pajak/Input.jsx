@@ -15,6 +15,7 @@ import Indonesia from "../../../lib/indonesia";
 export async function getServerSideProps() {
   // const { dataKabupaten } = await Indonesia.kabupaten();
   // const data = JSON.stringify(dataKabupaten);
+  const data = [];
   return {
     props: {
       data: data || [],
@@ -135,9 +136,11 @@ export default function Input({ data }) {
             <Grid>
               <Grid.Col span={12}>
                 <TextInput
+                  classNames="mantine-TextInput-defaultVariant mantine-TextInput-input"
                   required
                   label="Nama Pemerintah Daerah"
                   placeholder=""
+                  className="rounded-full"
                   onBlur={() => form.validateField("nama_pemda")}
                   {...form.getInputProps("nama_pemda")}
                 />
