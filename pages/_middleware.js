@@ -1,11 +1,11 @@
 import { NextResponse } from "next/server";
 import Auth from "../lib/Auth";
+import { appUrl } from "../lib/config";
+import Cookies from "js-cookie";
 
 export default async function middleware(request) {
-  // const status = await Auth.getUser();
-  // if (request.url !== "/login" && status !== 200) {
-  //   const url = request.nextUrl.clone();
-  //   url.pathname = "/login";
-  //   return NextResponse.rewrite(url);
-  // }
+  if (!Auth.isLogin && request.url !== appUrl("/login")) {
+    return NextResponse.redirect(appUrl("/login"), 302);
+  }
+  return NextResponse.next();
 }

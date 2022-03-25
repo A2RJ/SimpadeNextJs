@@ -1,3 +1,5 @@
+import { useRef, useState } from "react";
+import Head from "next/head";
 import {
   TextInput,
   Button,
@@ -9,13 +11,11 @@ import {
 } from "@mantine/core";
 import { DatePicker } from "@mantine/dates";
 import { useForm } from "@mantine/hooks";
-import { useRef, useState } from "react";
 import Indonesia from "../../../lib/indonesia";
 
 export async function getServerSideProps() {
-  // const { dataKabupaten } = await Indonesia.kabupaten();
-  // const data = JSON.stringify(dataKabupaten);
-  const data = [];
+  const kabupaten = await Indonesia.kabupaten();
+  const data = JSON.stringify(kabupaten);
   return {
     props: {
       data: data || [],
@@ -24,9 +24,8 @@ export async function getServerSideProps() {
 }
 
 export default function Input({ data }) {
-  // let provinsi = JSON.parse(data);
-  let provinsi = [];
-  provinsi = provinsi?.map((item) => {
+  let kabupaten = JSON.parse(data);
+  kabupaten = kabupaten?.map((item) => {
     return {
       ...item,
       value: item.city_id,
@@ -109,6 +108,9 @@ export default function Input({ data }) {
 
   return (
     <>
+      <Head>
+        <title>Input</title>
+      </Head>
       <Title
         order={3}
         style={{
@@ -131,12 +133,17 @@ export default function Input({ data }) {
           setOpened(true), handleSubmit(values);
         })}
       >
-        <Grid gutter={50}>
+        <Grid
+          gutter={50}
+          style={{
+            borderColor: "#ccc",
+          }}
+        >
           <Grid.Col md={6} lg={6}>
             <Grid>
               <Grid.Col span={12}>
                 <TextInput
-                  classNames="mantine-TextInput-defaultVariant mantine-TextInput-input"
+                  classNames=""
                   required
                   label="Nama Pemerintah Daerah"
                   placeholder=""
@@ -165,6 +172,7 @@ export default function Input({ data }) {
               </Grid.Col>
               <Grid.Col span={12}>
                 <Textarea
+                  required
                   placeholder=""
                   label="Alamat"
                   autosize
@@ -184,7 +192,7 @@ export default function Input({ data }) {
                   transitionTimingFunction="ease"
                   searchable
                   clearable
-                  data={provinsi}
+                  data={kabupaten}
                   ref={refProv}
                   onChange={(e) => getKecamatan(e)}
                 />

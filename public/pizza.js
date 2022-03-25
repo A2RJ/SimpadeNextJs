@@ -96,3 +96,4 @@ for (let index = 0; index < dropdownMenu.length; index++) {
     closeAnotherMenu(this);
   });
 }
+

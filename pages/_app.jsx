@@ -1,13 +1,16 @@
 import "./../styles/globals.css";
 import Head from "next/head";
 import { MantineProvider } from "@mantine/core";
-import Layout from "../components/layout/Layout";
 import { store } from "../store";
 import { Provider } from "react-redux";
-import { useState } from "react";
+import Layout from "../components/layout/Layout";
+import Cookies from "js-cookie";
+import { useEffect } from "react";
 
 export default function MyApp({ Component, pageProps }) {
-  const [isLogin, setIsLogin] = useState(false);
+  const componentName = Component.displayName || Component.name || "Component";
+
+  useEffect(() => {}, [componentName]);
 
   return (
     <>
@@ -30,13 +33,13 @@ export default function MyApp({ Component, pageProps }) {
             colorScheme: "light",
           }}
         >
-          {/* {isLogin ? ( */}
-          <Layout>
+          {componentName === "Login" ? (
             <Component {...pageProps} />
-          </Layout>
-          {/* ) : (
-            <Component {...pageProps} />
-          )} */}
+          ) : (
+            <Layout>
+              <Component {...pageProps} />
+            </Layout>
+          )}
         </MantineProvider>
       </Provider>
     </>

@@ -8,7 +8,7 @@
 }
 
 .sidebar.hidden {
-  animation: sidebar-show 0.5s;
+  /* animation: sidebar-show 0.5s; */
 }
 
 @keyframes sidebar-show {
@@ -34,4 +34,22 @@
     left: 0;
     opacity: 1;
   }
+}
+
+input[type="text"],
+input[type="email"],
+input[type="url"],
+input[type="password"],
+input[type="number"],
+input[type="date"],
+input[type="datetime-local"],
+input[type="month"],
+input[type="search"],
+input[type="tel"],
+input[type="time"],
+input[type="week"],
+textarea,
+select {
+  border-color: #b9c1ca !important;
+  border-radius: 5px;
 }

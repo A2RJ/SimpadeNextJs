@@ -1,22 +1,21 @@
 import Head from "next/head";
-import { useSelector } from "react-redux";
+// export async function getServerSideProps() {
+//   return {
+//     props: {
+//       data: [],
+//     },
+//   };
+// }
 
-export async function getServerSideProps() {
-  return {
-    props: {
-      data: [],
-    },
-  };
-}
-
-export default function Home({ data, status = false }) {
-  const auth = useSelector((state) => state.auth.isAuthenticated);
-
+const Home = () => {
   return (
     <>
       <Head>
         <title>Home</title>
       </Head>
+      <h1>Home</h1>
     </>
   );
-}
+};
+
+export default Home;

@@ -8,6 +8,7 @@
 - Setting menu masing-masing by user
 - Middleware filter menu by user
 - 3 Form pertama
+  -- Bandingkan performa jika simpan data indonesia dan langsung ambil yg dibituhkan saja
 
 ## Dasboard
 
@@ -15,3 +16,9 @@
 - Dashboard 2 [https://dribbble.com/shots/16594733-ManyCrypto-Cryptocurrency-Dashboard]
 
 ## Cross-site Scripting in quil
+
+## Form
+
+- use flowbite [https://flowbite.com/docs/components/forms/]
+- useForm [https://react-hook-form.com/api/useform]
+- Complete form and state use useForm [https://react-hook-form.com/api/useform]

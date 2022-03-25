@@ -20,7 +20,7 @@ export default function Layout({ children }) {
           <div className="content container">{children}</div>
         </div>
       </div>
-      <Script src="/pizza.js" />
+      <Script src="http://localhost:3000/pizza.js" />
     </>
   );
 }

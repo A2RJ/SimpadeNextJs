@@ -2,7 +2,13 @@ import { Button, createStyles, Group, Modal, TextInput } from "@mantine/core";
 import { useState } from "react";
 
 export default function index() {
-  const [opened, setOpened] = useState(false);
+  // const [opened, setOpened] = useState(false);
+
+  let opened = false;
+
+  const setOpened = (value) => {
+    opened = value;
+  };
 
   return (
     <>
