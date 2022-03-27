@@ -1,4 +1,5 @@
-import { Button, createStyles, Group, Modal, TextInput } from "@mantine/core";
+import { Button, Group, Modal, TextInput, createStyles } from "@mantine/core";
+
 import { useState } from "react";
 
 export default function index() {

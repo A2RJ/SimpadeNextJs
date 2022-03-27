@@ -1,4 +1,5 @@
 import Head from "next/head";
+
 // export async function getServerSideProps() {
 //   return {
 //     props: {
@@ -7,7 +8,7 @@ import Head from "next/head";
 //   };
 // }
 
-const Home = () => {
+export default function Home() {
   return (
     <>
       <Head>
@@ -16,6 +17,4 @@ const Home = () => {
       <h1>Home</h1>
     </>
   );
-};
-
-export default Home;
+}

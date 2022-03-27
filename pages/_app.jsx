@@ -1,10 +1,10 @@
 import "./../styles/globals.css";
+
 import Head from "next/head";
-import { MantineProvider } from "@mantine/core";
-import { store } from "../store";
-import { Provider } from "react-redux";
 import Layout from "../components/layout/Layout";
-import Cookies from "js-cookie";
+import { MantineProvider } from "@mantine/core";
+import { Provider } from "react-redux";
+import { store } from "..//store/store";
 import { useEffect } from "react";
 
 export default function MyApp({ Component, pageProps }) {

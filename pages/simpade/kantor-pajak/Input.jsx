@@ -1,17 +1,18 @@
-import { useRef, useState } from "react";
-import Head from "next/head";
 import {
-  TextInput,
   Button,
   Grid,
-  Title,
-  Textarea,
-  Select,
   Modal,
+  Select,
+  TextInput,
+  Textarea,
+  Title,
 } from "@mantine/core";
+import { useRef, useState } from "react";
+
 import { DatePicker } from "@mantine/dates";
-import { useForm } from "@mantine/hooks";
+import Head from "next/head";
 import Indonesia from "../../../lib/indonesia";
+import { useForm } from "@mantine/hooks";
 
 export async function getServerSideProps() {
   const kabupaten = await Indonesia.kabupaten();
