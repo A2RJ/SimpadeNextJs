@@ -15,8 +15,9 @@ import Indonesia from "../../../lib/indonesia";
 import { useForm } from "@mantine/hooks";
 
 export async function getServerSideProps() {
-  const kabupaten = await Indonesia.kabupaten();
-  const data = JSON.stringify(kabupaten);
+  // const kabupaten = await Indonesia.kabupaten();
+  // const data = JSON.stringify(kabupaten);
+  const data = [];
   return {
     props: {
       data: data || [],
@@ -25,7 +26,7 @@ export async function getServerSideProps() {
 }
 
 export default function Input({ data }) {
-  let kabupaten = JSON.parse(data);
+  let kabupaten = [];
   kabupaten = kabupaten?.map((item) => {
     return {
       ...item,
@@ -128,7 +129,6 @@ export default function Input({ data }) {
       >
         JAJAJAJJA
       </Modal>
-
       <form
         onSubmit={form.onSubmit((values) => {
           setOpened(true), handleSubmit(values);
@@ -144,7 +144,6 @@ export default function Input({ data }) {
             <Grid>
               <Grid.Col span={12}>
                 <TextInput
-                  classNames=""
                   required
                   label="Nama Pemerintah Daerah"
                   placeholder=""
@@ -176,7 +175,7 @@ export default function Input({ data }) {
                   required
                   placeholder=""
                   label="Alamat"
-                  autosize
+                  autosize="autosize"
                   minRows={2}
                   maxRows={6}
                   onBlur={() => form.validateField("alamat")}
@@ -191,8 +190,8 @@ export default function Input({ data }) {
                   transition="pop-top-left"
                   transitionDuration={80}
                   transitionTimingFunction="ease"
-                  searchable
-                  clearable
+                  searchable="searchable"
+                  clearable="clearable"
                   data={kabupaten}
                   ref={refProv}
                   onChange={(e) => getKecamatan(e)}
@@ -206,8 +205,8 @@ export default function Input({ data }) {
                   transition="pop-top-left"
                   transitionDuration={80}
                   transitionTimingFunction="ease"
-                  searchable
-                  clearable
+                  searchable="searchable"
+                  clearable="clearable"
                   data={selectedKecamatan}
                   ref={refKecamatan}
                   onChange={(e) => getKelurahan(e)}
@@ -221,8 +220,8 @@ export default function Input({ data }) {
                   transition="pop-top-left"
                   transitionDuration={80}
                   transitionTimingFunction="ease"
-                  searchable
-                  clearable
+                  searchable="searchable"
+                  clearable="clearable"
                   data={selectedKelurahan}
                   ref={refDesaKel}
                   onChange={(e) => getKodePos(e)}

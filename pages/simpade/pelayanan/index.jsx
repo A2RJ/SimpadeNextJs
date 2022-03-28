@@ -1,6 +1,7 @@
 import { Button, Group, Modal, TextInput, createStyles } from "@mantine/core";
 
 import { useState } from "react";
+import Layout from "../../../components/layout/Layout";
 
 export default function index() {
   // const [opened, setOpened] = useState(false);

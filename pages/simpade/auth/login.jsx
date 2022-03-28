@@ -1,7 +1,17 @@
-import { TextInput } from "@mantine/core";
+import { Loader, Notification, TextInput } from "@mantine/core";
 import { useForm } from "@mantine/hooks";
+import { useRouter } from "next/router";
+import { useState } from "react";
+import Auth from "../../../lib/Auth";
+import { X } from "tabler-icons-react";
 
 export default function Login() {
+  const router = useRouter();
+  const [errorLogin, setErrorLogin] = useState({
+    status: false,
+    loading: false,
+  });
+
   const form = useForm({
     initialValues: {
       email: "",
@@ -10,17 +20,31 @@ export default function Login() {
 
     validationRules: {
       email: (value) => /^\S+@\S+$/.test(value),
-      password: (value) => value.length < 6,
+      password: (value) => value !== "",
     },
 
     errorMessages: {
       email: "Please enter a valid email",
-      password: "Password must be at least 6 characters",
+      password: "Please enter a password",
     },
   });
 
-  const handlesubmit = (values) => {
-    console.log(values);
+  const handlesubmit = async (values) => {
+    setErrorLogin({
+      status: false,
+      loading: true,
+    });
+    const { status, data } = await Auth.login(values);
+    if (status === 200) {
+      Auth.setCridential("token", data.access_token);
+      console.log(Auth.token);
+      router.push("/");
+    } else {
+      setErrorLogin({
+        status: true,
+        loading: false,
+      });
+    }
   };
 
   return (
@@ -45,20 +69,29 @@ export default function Login() {
                 <h3 className="mb-6 text-center text-2xl font-medium">
                   Sign in to your Account
                 </h3>
+                {errorLogin.status && (
+                  <Notification
+                    disallowClose
+                    icon={<X size={18} />}
+                    color="red"
+                  >
+                    Invalid email or password
+                  </Notification>
+                )}
                 <form
                   onSubmit={form.onSubmit((values) => handlesubmit(values))}
                 >
                   <TextInput
                     required
                     name="email"
-                    className="mb-4 block w-full rounded-lg border border-transparent border-gray-200 px-4 py-3 focus:outline-none focus:ring focus:ring-blue-500"
+                    className="mb-4 block w-full rounded-lg py-3 focus:outline-none focus:ring focus:ring-blue-500"
                     placeholder="Email address"
                     {...form.getInputProps("email")}
                   />
                   <TextInput
                     required
                     name="password"
-                    className="mb-4 block w-full rounded-lg border border-transparent border-gray-200 px-4 py-3 focus:outline-none focus:ring focus:ring-blue-500"
+                    className="mb-4 block w-full rounded-lg py-3 focus:outline-none focus:ring focus:ring-blue-500"
                     placeholder="Password"
                     {...form.getInputProps("password")}
                   />
@@ -67,10 +100,13 @@ export default function Login() {
                       {form.errors.map((error) => error)}
                     </div>
                   )}
-                  <div className="block">
+                  <div className="float-right flex">
+                    {errorLogin.loading && (
+                      <Loader width={25} className="mr-2" />
+                    )}
                     <button
                       type="submit"
-                      className="w-full rounded-lg border border-transparent border-gray-200 bg-slate-400 px-4 py-3 focus:outline-none focus:ring focus:ring-blue-500"
+                      className="flex rounded-lg border border-transparent border-gray-200 bg-slate-400 px-4 py-3 focus:bg-slate-500"
                     >
                       Sign in
                     </button>

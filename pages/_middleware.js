@@ -1,10 +1,12 @@
-import Auth from "../lib/Auth";
 import { NextResponse } from "next/server";
 import { appUrl } from "../lib/config";
 
 export default async function middleware(request) {
-  if (!Auth.isLogin && request.url !== appUrl("/login")) {
-    return NextResponse.redirect(appUrl("/login"), 302);
+  if (
+    !request.cookies["token"] &&
+    request.url !== appUrl("/simpade/auth/login")
+  ) {
+    return NextResponse.redirect(appUrl("/simpade/auth/login"), 302);
   }
   return NextResponse.next();
 }

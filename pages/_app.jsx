@@ -1,6 +1,7 @@
 import "./../styles/globals.css";
 
 import Head from "next/head";
+import Script from "next/script";
 import Layout from "../components/layout/Layout";
 import { MantineProvider } from "@mantine/core";
 import { Provider } from "react-redux";
@@ -9,15 +10,14 @@ import { useEffect } from "react";
 
 export default function MyApp({ Component, pageProps }) {
   const componentName = Component.displayName || Component.name || "Component";
-
+  console.log("Atas", componentName);
   useEffect(() => {}, [componentName]);
-
+  console.log("Bawah", componentName);
   return (
     <>
       <Provider store={store}>
         <Head>
-          <title>SIMPADE</title>
-          <link rel="icon" href="/favicon.ico" />
+          <title> SIMPADE </title> <link rel="icon" href="/favicon.ico" />
         </Head>
         <MantineProvider
           withGlobalStyles
@@ -33,12 +33,12 @@ export default function MyApp({ Component, pageProps }) {
             colorScheme: "light",
           }}
         >
-          {componentName === "Login" ? (
-            <Component {...pageProps} />
-          ) : (
+          {componentName !== "Login" ? (
             <Layout>
               <Component {...pageProps} />
             </Layout>
+          ) : (
+            <Component {...pageProps} />
           )}
         </MantineProvider>
       </Provider>

@@ -1,11 +1,10 @@
 import Link from "next/link";
-import ListMenu from "./ListMenu";
 import Image from "next/image";
 import { VscChevronDown } from "react-icons/vsc";
 
 export default function SideBar({ menu }) {
   return (
-    <div className="sidebar hidden select-none transition md:block">
+    <div className="sidebar z-50 hidden select-none transition md:block">
       <div className="fixed mt-16 h-screen w-[250px] bg-gray-50 md:relative md:mt-0 md:w-[200px] lg:w-[250px]">
         <div className="flex">
           <div className="mx-auto hidden drop-shadow-xl hover:cursor-pointer md:block">

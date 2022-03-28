@@ -1,4 +1,9 @@
-# 17/03/2022
+# NODE MEMORY
+
+- Node [https://support.circleci.com/hc/en-us/articles/360009208393-How-can-I-increase-the-max-memory-for-Node-]
+- export NODE_OPTIONS=--max_old_space_size=20480 [https://stackoverflow.com/questions/38558989/node-js-heap-out-of-memory/66914674#66914674] 
+
+## 17/03/2022
 
 - Autentikasi
   -- Login
