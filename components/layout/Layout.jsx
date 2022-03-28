@@ -3,6 +3,7 @@ import Head from "next/head";
 import SideBar from "./Sidear";
 import TopBar from "./TopBar";
 import listMenu from "../../lib/listMenu";
+import { appUrl } from "../../lib/config";
 
 export default function Layout({ children }) {
   return (
@@ -20,7 +21,7 @@ export default function Layout({ children }) {
           <div className="content container">{children}</div>
         </div>
       </div>
-      <Script src="http://localhost:3000/pizza.js" />
+      <Script src={appUrl("/pizza.js")} />
     </>
   );
 }
