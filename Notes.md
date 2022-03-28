@@ -27,3 +27,4 @@
 - use flowbite [https://flowbite.com/docs/components/forms/]
 - useForm [https://react-hook-form.com/api/useform]
 - Complete form and state use useForm [https://react-hook-form.com/api/useform]
+https://medium.com/nextjs/the-script-component-in-next-js-ee6ee6cd705a

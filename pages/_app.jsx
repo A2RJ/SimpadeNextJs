@@ -7,12 +7,15 @@ import { MantineProvider } from "@mantine/core";
 import { Provider } from "react-redux";
 import { store } from "..//store/store";
 import { useEffect } from "react";
+import { useRouter } from "next/router";
 
 export default function MyApp({ Component, pageProps }) {
-  const componentName = Component.displayName || Component.name || "Component";
-  console.log("Atas", componentName);
-  useEffect(() => {}, [componentName]);
-  console.log("Bawah", componentName);
+  // const componentName = Component.displayName || Component.name || "Component";
+
+  const router = useRouter();
+  const { pathname } = router;
+  useEffect(() => {}, [pathname]);
+
   return (
     <>
       <Provider store={store}>
@@ -33,7 +36,7 @@ export default function MyApp({ Component, pageProps }) {
             colorScheme: "light",
           }}
         >
-          {componentName !== "Login" ? (
+          {pathname !== "/simpade/auth/login" ? (
             <Layout>
               <Component {...pageProps} />
             </Layout>
