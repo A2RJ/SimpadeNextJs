@@ -14,10 +14,12 @@ import Auth from "../lib/Auth";
 
 export default function Home() {
   const router = useRouter();
+
   const logout = () => {
     removeCookies("token");
     router.push("/");
   };
+
   return (
     <>
       <Head>
