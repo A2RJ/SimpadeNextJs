@@ -26,7 +26,6 @@ export default function Home() {
         <title>Home</title>
       </Head>
       <h1>Home</h1>
-      <h3>{Auth.token}</h3>
       <button onClick={() => logout()}>Logout</button>
     </>
   );

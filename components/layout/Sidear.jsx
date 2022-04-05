@@ -32,12 +32,19 @@ export default function SideBar({ menu }) {
                     )}
                   </span>
                   <ul className="dropdown-item-parent ml-2 hidden border-l-2 text-xs text-slate-500">
-                    <li className="dropdown-item leading-10 hover:text-blue-400">
-                      <span className="pl-5">ICON {item.name}</span>
-                    </li>
-                    <li className="dropdown-item leading-10 hover:text-blue-400">
-                      <span className="pl-5">ICON {item.name}</span>
-                    </li>
+                    {item.subMenu.map((item) => (
+                      <li
+                        key={item.link}
+                        className="dropdown-item leading-10 hover:text-blue-400"
+                      >
+                        <Link href={item.link} passHref>
+                          <span className="single-menud flex flex-row items-center space-x-3">
+                            {item.icon}
+                            <span>{item.name}</span>
+                          </span>
+                        </Link>
+                      </li>
+                    ))}
                   </ul>
                 </>
               ) : (
@@ -45,9 +52,6 @@ export default function SideBar({ menu }) {
                   <span className="single-menu flex flex-row items-center space-x-3">
                     {item.icon}
                     <span>{item.name}</span>
-                    {item.type === "dropdown" && (
-                      <VscChevronDown className="dropdown-icon transition-transform duration-500" />
-                    )}
                   </span>
                 </Link>
               )}

@@ -18,13 +18,13 @@ export default function TopBar() {
         />
       </div>
       <div className="flex items-center hover:cursor-pointer">
-        {/* <Image
+        <Image
           width={40}
           height={40}
           className="h-8 w-8 rounded-full "
           src="/images/avatars/01.png"
           alt="avatar"
-        /> */}
+        />
         <div className="ml-4 hidden border-l-2 px-3 md:block">
           <p className="text-lg font-semibold">John Doe</p>
         </div>
