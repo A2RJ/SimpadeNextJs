@@ -114,9 +114,9 @@ export default function Input({ kabupaten }) {
   const getKodePos = async (e) => {
     form.setFieldValue("kelurahan", e);
     const kodepos = await Indonesia.kodeposByKel(e).then((res) => res);
-    if (kodepos.length > 0)
-      form.setFieldValue("kodepos", kodepos[0].postal_code);
-    else form.setFieldValue("kodepos", "");
+    kodepos.length > 0
+      ? form.setFieldValue("kodepos", kodepos[0].postal_code)
+      : form.setFieldValue("kodepos", "");
   };
 
   const handleSubmit = (values) => {
@@ -128,174 +128,173 @@ export default function Input({ kabupaten }) {
       <Head>
         <title>Input Kantor Pajak</title>
       </Head>
-      <h4 className="my-4 px-4 text-2xl">Instansi Pajak Daerah</h4>
-      <form onSubmit={form.onSubmit((values) => handleSubmit(values))}>
-        <div className="grid grid-cols-1 gap-4 px-4 md:grid-cols-2">
-          <div className="grid-col-12 space-y-2">
-            <TextInput
-              required
-              label="Nama Pemerintah Daerah"
-              placeholder=""
-              className="rounded-full"
-              onBlur={() => form.validateField("nama_pemda")}
-              {...form.getInputProps("nama_pemda")}
-            />
-            <TextInput
-              required
-              label="Kode Pemerintah Daerah"
-              placeholder=""
-              onBlur={() => form.validateField("kode_pemda")}
-              {...form.getInputProps("kode_pemda")}
-            />
-            <TextInput
-              required
-              label="Nomenklatur"
-              placeholder=""
-              onBlur={() => form.validateField("nomenklatur")}
-              {...form.getInputProps("nomenklatur")}
-            />
-            <Textarea
-              required
-              placeholder=""
-              label="Alamat"
-              autosize="autosize"
-              minRows={2}
-              maxRows={6}
-              onBlur={() => form.validateField("alamat")}
-              {...form.getInputProps("alamat")}
-            />
-            <Select
-              searchable
-              clearable
-              allowDeselect
-              required
-              data={kabupaten}
-              onChange={(e) => getKecamatan(e)}
-              onBlur={() => form.validateField("kotakab")}
-              label="Kota/Kabupaten"
-              placeholder="Pilih"
-              nothingFound="No options"
-              dropdownPosition="bottom"
-              transition="pop-top-left"
-              transitionDuration={80}
-              transitionTimingFunction="ease"
-            />
-            {form.errors.kotakab && (
-              <p className="text-[14px] text-red-500">{form.errors.kotakab}</p>
-            )}
-            <Select
-              searchable
-              clearable
-              allowDeselect
-              data={selectKecamatan}
-              onChange={(e) => getKelurahan(e)}
-              onBlur={() => form.validateField("kecamatan")}
-              label="Kecamatan"
-              placeholder="Pilih"
-              nothingFound="No options"
-              dropdownPosition="bottom"
-              transition="pop-top-left"
-              transitionDuration={80}
-              transitionTimingFunction="ease"
-            />
-            {form.errors.kecamatan && (
-              <p className="text-[14px] text-red-500">
-                {form.errors.kecamatan}
-              </p>
-            )}
-            <Select
-              searchable
-              clearable
-              allowDeselect
-              data={selectKelurahan}
-              onChange={(e) => getKodePos(e)}
-              onBlur={() => form.validateField("kelurahan")}
-              label="Kelurahan"
-              placeholder="Pilih"
-              nothingFound="No options"
-              dropdownPosition="bottom"
-              transition="pop-top-left"
-              transitionDuration={80}
-              transitionTimingFunction="ease"
-            />
-            {form.errors.kelurahan && (
-              <p className="text-[14px] text-red-500">
-                {form.errors.kelurahan}
-              </p>
-            )}
-            <TextInput
-              required
-              label="Kode Pos"
-              placeholder=""
-              onBlur={() => form.validateField("kodepos")}
-              {...form.getInputProps("kodepos")}
-            />
+      <div className="px-4">
+        <h4 className="my-4 text-2xl">Instansi Pajak Daerah</h4>
 
-            <h4 className="my-4 px-4 text-2xl">Instansi Pajak Daerah</h4>
+        <form onSubmit={form.onSubmit((values) => handleSubmit(values))}>
+          <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+            <div className="grid-col-12 space-y-2">
+              <TextInput
+                required
+                label="Nama Pemerintah Daerah"
+                placeholder=""
+                className="rounded-full"
+                onBlur={() => form.validateField("nama_pemda")}
+                {...form.getInputProps("nama_pemda")}
+              />
+              <TextInput
+                required
+                label="Kode Pemerintah Daerah"
+                placeholder=""
+                onBlur={() => form.validateField("kode_pemda")}
+                {...form.getInputProps("kode_pemda")}
+              />
+              <TextInput
+                required
+                label="Nomenklatur"
+                placeholder=""
+                onBlur={() => form.validateField("nomenklatur")}
+                {...form.getInputProps("nomenklatur")}
+              />
+              <Textarea
+                required
+                placeholder=""
+                label="Alamat"
+                autosize="autosize"
+                minRows={2}
+                maxRows={6}
+                onBlur={() => form.validateField("alamat")}
+                {...form.getInputProps("alamat")}
+              />
+              <Select
+                searchable
+                clearable
+                allowDeselect
+                required
+                data={kabupaten}
+                onChange={(e) => getKecamatan(e)}
+                onBlur={() => form.validateField("kotakab")}
+                label="Kota/Kabupaten"
+                placeholder="Pilih"
+                nothingFound="No options"
+                dropdownPosition="bottom"
+                transition="pop-top-left"
+                transitionDuration={80}
+                transitionTimingFunction="ease"
+              />
+              {form.errors.kotakab && (
+                <p className="text-[14px] text-red-500">
+                  {form.errors.kotakab}
+                </p>
+              )}
+              <Select
+                searchable
+                clearable
+                allowDeselect
+                data={selectKecamatan}
+                onChange={(e) => getKelurahan(e)}
+                onBlur={() => form.validateField("kecamatan")}
+                label="Kecamatan"
+                placeholder="Pilih"
+                nothingFound="No options"
+                dropdownPosition="bottom"
+                transition="pop-top-left"
+                transitionDuration={80}
+                transitionTimingFunction="ease"
+              />
+              {form.errors.kecamatan && (
+                <p className="text-[14px] text-red-500">
+                  {form.errors.kecamatan}
+                </p>
+              )}
+              <Select
+                searchable
+                clearable
+                allowDeselect
+                data={selectKelurahan}
+                onChange={(e) => getKodePos(e)}
+                onBlur={() => form.validateField("kelurahan")}
+                label="Kelurahan"
+                placeholder="Pilih"
+                nothingFound="No options"
+                dropdownPosition="bottom"
+                transition="pop-top-left"
+                transitionDuration={80}
+                transitionTimingFunction="ease"
+              />
+              {form.errors.kelurahan && (
+                <p className="text-[14px] text-red-500">
+                  {form.errors.kelurahan}
+                </p>
+              )}
+              <TextInput
+                required
+                label="Kode Pos"
+                placeholder=""
+                onBlur={() => form.validateField("kodepos")}
+                {...form.getInputProps("kodepos")}
+              />
 
-            <TextInput
-              required
-              label="Nama Kepala Instansi"
-              placeholder=""
-              onBlur={() => form.validateField("nama_kepinstansi")}
-              {...form.getInputProps("nama_kepinstansi")}
-            />
-            <TextInput
-              required
-              label="Telepon"
-              placeholder=""
-              onBlur={() => form.validateField("tlp")}
-              {...form.getInputProps("tlp")}
-            />
-            <TextInput
-              required
-              label="Email"
-              placeholder=""
-              onBlur={() => form.validateField("email")}
-              {...form.getInputProps("email")}
-            />
-            <TextInput
-              required
-              label="File Logo"
-              placeholder=""
-              onBlur={() => form.validateField("file_logo")}
-              {...form.getInputProps("file_logo")}
-            />
-            <TextInput
-              required
-              label="File Kantor"
-              placeholder=""
-              onBlur={() => form.validateField("file_kantor")}
-              {...form.getInputProps("file_kantor")}
-            />
+              <h4 className="my-4 px-4 text-2xl">Instansi Pajak Daerah</h4>
+
+              <TextInput
+                required
+                label="Nama Kepala Instansi"
+                placeholder=""
+                onBlur={() => form.validateField("nama_kepinstansi")}
+                {...form.getInputProps("nama_kepinstansi")}
+              />
+              <TextInput
+                required
+                label="Telepon"
+                placeholder=""
+                onBlur={() => form.validateField("tlp")}
+                {...form.getInputProps("tlp")}
+              />
+              <TextInput
+                required
+                label="Email"
+                placeholder=""
+                onBlur={() => form.validateField("email")}
+                {...form.getInputProps("email")}
+              />
+              <TextInput
+                required
+                label="File Logo"
+                placeholder=""
+                onBlur={() => form.validateField("file_logo")}
+                {...form.getInputProps("file_logo")}
+              />
+              <TextInput
+                required
+                label="File Kantor"
+                placeholder=""
+                onBlur={() => form.validateField("file_kantor")}
+                {...form.getInputProps("file_kantor")}
+              />
+            </div>
+            <div className="grid-col-12 space-y-2">
+              <DatePicker
+                placeholder="Pick date"
+                label="Tanggal Rekam"
+                required
+                {...form.getInputProps("created_at")}
+              />
+              <DatePicker
+                placeholder="Pick date"
+                label="Tanggal Update"
+                required
+                {...form.getInputProps("updated_at")}
+              />
+            </div>
           </div>
-          <div className="grid-col-12 space-y-2">
-            <DatePicker
-              placeholder="Pick date"
-              label="Tanggal Rekam"
-              required
-              {...form.getInputProps("created_at")}
-            />
-            <DatePicker
-              placeholder="Pick date"
-              label="Tanggal Update"
-              required
-              {...form.getInputProps("updated_at")}
-            />
-          </div>
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "flex-start",
-              marginTop: "1rem",
-            }}
-          >
+          <div className="mt-4 flex justify-end">
             <Button type="submit" color="primary" variant="outline">
               Submit
             </Button>
           </div>
-        </div>
-      </form>
+        </form>
+      </div>
     </>
   );
 }

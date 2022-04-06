@@ -38,6 +38,7 @@ export default function SideBar({ menu }) {
                         className="dropdown-item leading-10 hover:text-blue-400"
                       >
                         <Link href={item.link} passHref>
+                          {/* as={item.as} */}
                           <span className="single-menud flex flex-row items-center space-x-3">
                             {item.icon}
                             <span>{item.name}</span>
