@@ -4,28 +4,43 @@ import { DatePicker } from "@mantine/dates";
 import Head from "next/head";
 import Indonesia from "../../../lib/indonesia";
 import { useForm } from "@mantine/hooks";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
-export async function getServerSideProps() {
-  const kabupaten = await Indonesia.kabupaten().then((res) => {
-    return res.map((item) => {
-      return {
-        label: item.city_name,
-        value: item.city_id,
-      };
-    });
-  });
+// export async function getServerSideProps() {
+//   const kabupaten = await Indonesia.kabupaten().then((res) => {
+//     return res.map((item) => {
+//       return {
+//         label: item.city_name,
+//         value: item.city_id,
+//       };
+//     });
+//   });
 
-  return {
-    props: {
-      kabupaten,
-    },
-  };
-}
+//   return {
+//     props: {
+//       kabupaten,
+//     },
+//   };
+// }
 
-export default function Input({ kabupaten }) {
+export default function Input() {
+  const [kabupaten, setKabupaten] = useState([]);
   const [selectKecamatan, setKecamatan] = useState([]);
   const [selectKelurahan, setKelurahan] = useState([]);
+
+  useEffect(() => {
+    (async () => {
+      const kabupaten = await Indonesia.kabupaten().then((res) => {
+        return res.map((item) => {
+          return {
+            label: item.city_name,
+            value: item.city_id,
+          };
+        });
+      });
+      setKabupaten(kabupaten);
+    })();
+  }, [setKabupaten]);
 
   const form = useForm({
     initialValues: {
